@@ -15,6 +15,13 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::get('/dashboard', function () {
+    if (auth()->user()->role === 'admin') {
+        return redirect()->route('admin.dashboard');
+    }
+    return redirect()->route('user.dashboard');
+})->middleware(['auth'])->name('dashboard');
+
 // Admin Routes
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'adminDashboard'])->name('dashboard');
@@ -52,6 +59,10 @@ Route::get('/user/settings', function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [\App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::get('/settings', [\App\Http\Controllers\ProfileController::class, 'settings'])->name('settings');
     Route::delete('/settings/delete-account', [\App\Http\Controllers\ProfileController::class, 'destroyAccount'])->name('settings.destroy');
 });

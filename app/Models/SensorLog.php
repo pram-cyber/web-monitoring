@@ -14,7 +14,9 @@ class SensorLog extends Model
         'latitude',
         'longitude',
         'gps_accuracy',
-        'is_history'
+        'is_history',
+        'tinggi_sampah',
+        'sisa_ruang'
     ];
 
     

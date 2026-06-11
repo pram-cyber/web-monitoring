@@ -13,8 +13,8 @@ class DashboardController extends Controller
     {
         $bins            = TrashBin::all();
         $totalBins       = $bins->count();
-        $criticalBins    = $bins->where('percentage', '>=', 90)->count();
-        $normalBins      = $bins->where('percentage', '<', 70)->count();
+        $criticalBins    = $bins->where('percentage', '>', 85)->count();
+        $normalBins      = $bins->whereBetween('percentage', [25, 85])->count();
         $avgFill         = round($bins->avg('percentage') ?? 0);
         $activeBins      = $bins->where('is_active', true)->count();
         $maintenanceBins = $bins->where('is_active', false)->count();
@@ -65,7 +65,7 @@ class DashboardController extends Controller
     {
         $bins         = TrashBin::all();
         $totalBins    = $bins->count();
-        $criticalBins = $bins->where('percentage', '>=', 90)->count();
+        $criticalBins = $bins->where('percentage', '>', 85)->count();
         $myReports    = Report::where('user_id', auth()->id())->count();
 
         if (request()->ajax() || request()->has('api')) {

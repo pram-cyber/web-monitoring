@@ -2,172 +2,193 @@
 
 @section('content')
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-3">
     <div>
-        <h5 class="fw-bold mb-1">Manajemen User</h5>
-        <small style="color:var(--text-muted)">Kelola siapa saja yang bisa akses sistem</small>
+        <h5 class="text-xl font-bold text-slate-800 dark:text-slate-100">Manajemen User</h5>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Kelola siapa saja yang bisa akses sistem</p>
     </div>
-    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">
+    <button onclick="toggleAddUserModal(true)" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold bg-blue-600 dark:bg-emerald-600 hover:bg-blue-700 dark:hover:bg-emerald-700 text-white rounded-xl shadow-md transition-all active:scale-95 cursor-pointer">
         <i class="fas fa-plus"></i> Tambah User
     </button>
 </div>
 
 <!-- Stats -->
-<div class="row g-3 mb-4">
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div>
-                <div class="label">Total User</div>
-                <div class="value text-primary">{{ $users->count() }}</div>
-            </div>
-            <div class="stat-icon" style="background:#eff6ff">
-                <i class="fas fa-users" style="color:#2563eb"></i>
-            </div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-6">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+        <div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total User</div>
+            <div class="text-3xl font-extrabold text-blue-600 dark:text-blue-400 mt-1">{{ $users->count() }}</div>
+        </div>
+        <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950/45 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-inner">
+            <i class="fas fa-users text-lg"></i>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div>
-                <div class="label">User Aktif</div>
-                <div class="value text-success">{{ $users->where('is_active', true)->count() }}</div>
-            </div>
-            <div class="stat-icon" style="background:#f0fdf4">
-                <i class="fas fa-user-check" style="color:#16a34a"></i>
-            </div>
+    
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+        <div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">User Aktif</div>
+            <div class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-1">{{ $users->where('is_active', true)->count() }}</div>
+        </div>
+        <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950/45 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-inner">
+            <i class="fas fa-user-check text-lg"></i>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div>
-                <div class="label">User Nonaktif</div>
-                <div class="value text-danger">{{ $users->where('is_active', false)->count() }}</div>
-            </div>
-            <div class="stat-icon" style="background:#fef2f2">
-                <i class="fas fa-user-times" style="color:#dc2626"></i>
-            </div>
+
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+        <div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">User Nonaktif</div>
+            <div class="text-3xl font-extrabold text-rose-600 dark:text-rose-400 mt-1">{{ $users->where('is_active', false)->count() }}</div>
+        </div>
+        <div class="w-12 h-12 bg-rose-50 dark:bg-rose-950/45 rounded-xl flex items-center justify-center text-rose-600 dark:text-rose-400 shadow-inner">
+            <i class="fas fa-user-times text-lg"></i>
         </div>
     </div>
 </div>
 
-<!-- Tabel User -->
-<div class="card-custom p-3">
-    <div class="d-flex gap-2 mb-3">
-        <input type="text" class="form-control form-control-sm" style="max-width:300px"
+<!-- Table Card -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm overflow-hidden p-5">
+    <div class="flex flex-col sm:flex-row gap-3 mb-5">
+        <input type="text" class="w-full sm:max-w-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl px-3.5 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-emerald-500 transition-all text-slate-800 dark:text-slate-100"
                placeholder="Cari user..." onkeyup="filterUsers(this.value)">
-        <select class="form-select form-select-sm" style="max-width:150px" onchange="filterRole(this.value)">
+        <select class="w-full sm:max-w-[150px] bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl px-3.5 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-emerald-500 transition-all text-slate-800 dark:text-slate-100" onchange="filterRole(this.value)">
             <option value="">Semua Role</option>
             <option value="admin">Admin</option>
             <option value="user">User</option>
         </select>
     </div>
 
-    <table class="table table-hover" id="users-table">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Radius Notif</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($users as $user)
-            <tr data-role="{{ $user->role }}">
-                <td>{{ $loop->iteration }}</td>
-                <td>
-                    <div class="d-flex align-items-center gap-2">
-                        <div style="width:32px;height:32px;border-radius:50%;background:#2563eb;color:white;
-                                    display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">
-                            {{ strtoupper(substr($user->name, 0, 1)) }}
-                        </div>
-                        <div>
-                            <div style="font-size:13px;font-weight:600">{{ $user->name }}</div>
-                            <div style="font-size:11px;color:var(--text-muted)">
-                                Bergabung {{ $user->created_at->format('d M Y') }}
+    <div class="overflow-x-auto rounded-xl border border-slate-150 dark:border-slate-800">
+        <table class="w-full border-collapse text-left" id="users-table">
+            <thead>
+                <tr class="bg-slate-50/50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    <th class="px-6 py-4">No</th>
+                    <th class="px-6 py-4">Nama</th>
+                    <th class="px-6 py-4">Email</th>
+                    <th class="px-6 py-4">Role</th>
+                    <th class="px-6 py-4">Status</th>
+                    <th class="px-6 py-4">Radius Notif</th>
+                    <th class="px-6 py-4 text-right">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-150 dark:divide-slate-800/60">
+                @forelse($users as $user)
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-all" data-role="{{ $user->role }}">
+                    <td class="px-6 py-4 text-xs font-mono text-slate-450 dark:text-slate-500">{{ $loop->iteration }}</td>
+                    <td class="px-6 py-4 text-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-blue-600/10 dark:bg-emerald-600/10 text-blue-600 dark:text-emerald-400 border border-blue-600/20 dark:border-emerald-600/20 flex items-center justify-center text-xs font-black shrink-0 shadow-sm">
+                                {{ strtoupper(substr($user->name, 0, 1)) }}
+                            </div>
+                            <div>
+                                <div class="font-bold text-slate-800 dark:text-slate-200">{{ $user->name }}</div>
+                                <div class="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">
+                                    Bergabung {{ $user->created_at->format('d M Y') }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </td>
-                <td>{{ $user->email }}</td>
-                <td>
-                    <span class="badge {{ $user->role === 'admin' ? 'bg-primary' : 'bg-secondary' }}">
-                        {{ ucfirst($user->role) }}
-                    </span>
-                </td>
-                <td>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" 
-                               {{ $user->is_active ? 'checked' : '' }}
-                               {{ $user->id === auth()->id() ? 'disabled' : '' }}
-                               onchange="toggleUser({{ $user->id }}, this.checked)">
-                    </div>
-                </td>
-                <td>{{ $user->notification_radius }}m</td>
-                <td>
-                    @if($user->id !== auth()->id())
-                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-inline"
-                          onsubmit="return confirmAction(event, 'Apakah Anda yakin ingin menghapus user ini?')">
-                        @csrf @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-outline-danger">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </form>
-                    @endif
-                </td>
-            </tr>
-            @empty
-            <tr><td colspan="7" class="text-center text-muted">Belum ada user</td></tr>
-            @endforelse
-        </tbody>
-    </table>
-</div>
-
-<!-- Modal Tambah User -->
-<div class="modal fade" id="addUserModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content" style="background:var(--card-bg);color:var(--text)">
-            <div class="modal-header">
-                <h6 class="modal-title fw-bold">Tambah User Baru</h6>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <form action="{{ route('admin.users.store') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Nama</label>
-                        <input type="text" name="name" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Role</label>
-                        <select name="role" class="form-select">
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-                </div>
-            </form>
-        </div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-slate-650 dark:text-slate-350">{{ $user->email }}</td>
+                    <td class="px-6 py-4">
+                        <span class="px-2 py-0.5 text-[10px] font-extrabold rounded-md {{ $user->role === 'admin' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20' : 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border border-slate-500/20' }}">
+                            {{ ucfirst($user->role) }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <label class="relative inline-flex items-center cursor-pointer select-none">
+                            <input type="checkbox" 
+                                   {{ $user->is_active ? 'checked' : '' }}
+                                   {{ $user->id === auth()->id() ? 'disabled' : '' }}
+                                   onchange="toggleUser({{ $user->id }}, this.checked)"
+                                   class="sr-only peer">
+                            <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none dark:bg-slate-800 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500 {{ $user->id === auth()->id() ? 'opacity-50 cursor-not-allowed' : '' }}"></div>
+                        </label>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-slate-700 dark:text-slate-350 font-semibold">{{ $user->notification_radius }}m</td>
+                    <td class="px-6 py-4 text-right">
+                        @if($user->id !== auth()->id())
+                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline"
+                              onsubmit="return confirmAction(event, 'Apakah Anda yakin ingin menghapus user ini?')">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="inline-flex items-center justify-center w-8 h-8 text-red-500 hover:bg-red-500/10 rounded-lg border border-red-500/20 transition-all cursor-pointer" title="Hapus User">
+                                <i class="fas fa-trash text-xs"></i>
+                            </button>
+                        </form>
+                        @endif
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="7" class="px-6 py-12 text-center text-slate-450 dark:text-slate-500">
+                        <i class="fas fa-users fa-2x mb-3 opacity-40"></i>
+                        <div class="text-sm font-medium">Belum ada user</div>
+                    </td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
 </div>
+
+<!-- Custom Modal Tambah User -->
+<div id="addUserModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+    <div class="bg-white dark:bg-slate-900 border border-slate-250 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+        <button onclick="toggleAddUserModal(false)" class="absolute top-4 right-4 text-slate-400 hover:text-slate-650 dark:hover:text-slate-250 cursor-pointer">
+            <i class="fas fa-times text-lg"></i>
+        </button>
+        
+        <h6 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-5">Tambah User Baru</h6>
+        
+        <form action="{{ route('admin.users.store') }}" method="POST">
+            @csrf
+            <div class="space-y-4 mb-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 dark:text-slate-450 uppercase mb-1.5">Nama</label>
+                    <input type="text" name="name" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-250 dark:border-slate-800 rounded-xl px-3.5 py-2 text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-emerald-500 transition-all" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 dark:text-slate-450 uppercase mb-1.5">Email</label>
+                    <input type="email" name="email" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-250 dark:border-slate-800 rounded-xl px-3.5 py-2 text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-emerald-500 transition-all" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 dark:text-slate-450 uppercase mb-1.5">Password</label>
+                    <input type="password" name="password" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-250 dark:border-slate-800 rounded-xl px-3.5 py-2 text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-emerald-500 transition-all" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 dark:text-slate-450 uppercase mb-1.5">Role</label>
+                    <select name="role" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-250 dark:border-slate-800 rounded-xl px-3.5 py-2 text-sm text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-emerald-500 transition-all">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 border-t border-slate-100 dark:border-slate-800 pt-4">
+                <button type="button" onclick="toggleAddUserModal(false)" class="px-4 py-2 text-xs font-semibold border border-slate-300 dark:border-slate-805 text-slate-650 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all cursor-pointer">Batal</button>
+                <button type="submit" class="px-4 py-2 text-xs font-semibold bg-blue-600 dark:bg-emerald-600 hover:bg-blue-700 dark:hover:bg-emerald-700 text-white rounded-xl shadow-md transition-all active:scale-95 cursor-pointer">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
 <script>
+    function toggleAddUserModal(show) {
+        const modal = document.getElementById('addUserModal');
+        if (show) {
+            modal.classList.remove('hidden');
+        } else {
+            modal.classList.add('hidden');
+        }
+    }
+
+    // Close modal on clicking outside
+    document.getElementById('addUserModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            toggleAddUserModal(false);
+        }
+    });
+
     function filterUsers(val) {
         document.querySelectorAll('#users-table tbody tr').forEach(row => {
             row.style.display = row.textContent.toLowerCase().includes(val.toLowerCase()) ? '' : 'none';
@@ -176,7 +197,9 @@
 
     function filterRole(role) {
         document.querySelectorAll('#users-table tbody tr').forEach(row => {
-            row.style.display = !role || row.dataset.role === role ? '' : 'none';
+            if (row.dataset.role) {
+                row.style.display = !role || row.dataset.role === role ? '' : 'none';
+            }
         });
     }
 
@@ -209,8 +232,8 @@
                 Toast.fire({
                     icon: 'success',
                     title: active ? 'User berhasil diaktifkan!' : 'User berhasil dinonaktifkan!',
-                    background: document.documentElement.getAttribute('data-theme') === 'dark' ? '#1a1a2e' : '#ffffff',
-                    color: document.documentElement.getAttribute('data-theme') === 'dark' ? '#f8f9fa' : '#1a1a2e'
+                    background: document.documentElement.classList.contains('dark') ? '#0f172a' : '#ffffff',
+                    color: document.documentElement.classList.contains('dark') ? '#f8fafc' : '#1e293b'
                 });
             }
         })

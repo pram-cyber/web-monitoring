@@ -66,8 +66,8 @@ class TrashBinController extends Controller
             'max_depth_cm' => 'required|integer',
         ], $messages);
         
-        $validatedWeb['latitude']  = $validatedWeb['latitude'] ?? -7.9797;
-        $validatedWeb['longitude'] = $validatedWeb['longitude'] ?? 112.6304;
+        $validatedWeb['latitude']  = $validatedWeb['latitude'] ?? -8.166102;
+        $validatedWeb['longitude'] = $validatedWeb['longitude'] ?? 113.704272;
         
         TrashBin::create($validatedWeb);
         
@@ -138,33 +138,39 @@ class TrashBinController extends Controller
         // 1. Jika tong sampah sebelumnya terisi (>= 70%), catat event "Penuh" terlebih dahulu ke history
         if ($bin->percentage >= 70) {
             \App\Models\SensorLog::create([
-                'trash_bin_id' => $bin->id,
-                'distance_cm'  => $bin->distance_cm,
-                'percentage'   => $bin->percentage,
-                'status'       => 'full',
-                'latitude'     => $bin->latitude,
-                'longitude'    => $bin->longitude,
-                'recorded_at'  => now()->subSeconds(2), // Sedikit lebih awal agar urutan timeline bagus
-                'is_history'   => true, 
+                'trash_bin_id'   => $bin->id,
+                'distance_cm'    => $bin->distance_cm,
+                'percentage'     => $bin->percentage,
+                'status'         => 'full',
+                'latitude'       => $bin->latitude,
+                'longitude'      => $bin->longitude,
+                'recorded_at'    => now()->subSeconds(2), // Sedikit lebih awal agar urutan timeline bagus
+                'is_history'     => true, 
+                'tinggi_sampah'  => $bin->tinggi_sampah,
+                'sisa_ruang'     => $bin->sisa_ruang,
             ]);
         }
         
         // 2. Simpan log pengambilan ("Diambil") ke history
         \App\Models\SensorLog::create([
-            'trash_bin_id' => $bin->id,
-            'distance_cm'  => $bin->max_depth_cm,
-            'percentage'   => 0,
-            'status'       => 'empty',
-            'latitude'     => $bin->latitude,
-            'longitude'    => $bin->longitude,
-            'recorded_at'  => now(),
-            'is_history'   => true, // Event resmi pengosongan sampah!
+            'trash_bin_id'   => $bin->id,
+            'distance_cm'    => $bin->max_depth_cm,
+            'percentage'     => 0,
+            'status'         => 'empty',
+            'latitude'       => $bin->latitude,
+            'longitude'      => $bin->longitude,
+            'recorded_at'    => now(),
+            'is_history'     => true, // Event resmi pengosongan sampah!
+            'tinggi_sampah'  => 0,
+            'sisa_ruang'     => $bin->max_depth_cm,
         ]);
 
         $bin->update([
-            'percentage'  => 0,
-            'status'      => 'empty',
-            'distance_cm' => $bin->max_depth_cm
+            'percentage'    => 0,
+            'status'        => 'empty',
+            'distance_cm'   => $bin->max_depth_cm,
+            'tinggi_sampah' => 0,
+            'sisa_ruang'    => $bin->max_depth_cm,
         ]);
 
         return response()->json(['success' => true, 'message' => 'Tong sampah berhasil ditandai kosong!']);

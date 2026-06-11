@@ -3,228 +3,273 @@
 @section('content')
 
 <!-- Stats -->
-<div class="row g-3 mb-4">
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div>
-                <div class="label">Total Bins</div>
-                <div class="value text-primary">{{ $totalBins }}</div>
-            </div>
-            <div class="stat-icon" style="background:#eff6ff">
-                <i class="fas fa-trash" style="color:#2563eb"></i>
-            </div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-6">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+        <div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Bins</div>
+            <div class="text-3xl font-extrabold text-blue-600 dark:text-blue-400 mt-1">{{ $totalBins }}</div>
+        </div>
+        <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950/45 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-inner">
+            <i class="fas fa-trash text-lg"></i>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div>
-                <div class="label">Critical Bins</div>
-                <div class="value text-danger">{{ $criticalBins }}</div>
-            </div>
-            <div class="stat-icon" style="background:#fef2f2">
-                <i class="fas fa-exclamation-triangle" style="color:#dc2626"></i>
-            </div>
+    
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+        <div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Critical Bins</div>
+            <div class="text-3xl font-extrabold text-rose-600 dark:text-rose-400 mt-1">{{ $criticalBins }}</div>
+        </div>
+        <div class="w-12 h-12 bg-rose-50 dark:bg-rose-950/45 rounded-xl flex items-center justify-center text-rose-600 dark:text-rose-400 shadow-inner">
+            <i class="fas fa-exclamation-triangle text-lg animate-pulse"></i>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div>
-                <div class="label">Laporan Saya</div>
-                <div class="value text-warning">{{ $myReports }}</div>
-            </div>
-            <div class="stat-icon" style="background:#fffbeb">
-                <i class="fas fa-flag" style="color:#f59e0b"></i>
-            </div>
+
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+        <div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Laporan Saya</div>
+            <div class="text-3xl font-extrabold text-amber-600 dark:text-amber-400 mt-1">{{ $myReports }}</div>
+        </div>
+        <div class="w-12 h-12 bg-amber-50 dark:bg-amber-950/45 rounded-xl flex items-center justify-center text-amber-600 dark:text-amber-400 shadow-inner">
+            <i class="fas fa-flag text-lg"></i>
         </div>
     </div>
 </div>
 
-<div class="card-custom p-4 mb-4">
-        <div class="row g-4">
-            <!-- Left: Table/Grid Monitoring List -->
-            <div class="col-lg-8">
-                <div class="card-custom p-3" style="box-shadow: none; border: none; background: transparent; padding: 0 !important;">
-                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-                        <div class="d-flex align-items-center gap-3">
-                            <h6 class="fw-bold mb-0" style="color:var(--text)"><i class="fas fa-list text-primary"></i> Daftar Pemantauan</h6>
-                            
-                            <!-- Grid / Table View Mode Selector -->
-                            <div class="btn-group btn-group-sm" role="group">
-                                <button type="button" class="btn btn-outline-primary" id="btn-view-grid" onclick="setViewMode('grid')" title="Tampilan Card Grid">
-                                    <i class="fas fa-th-large"></i> Grid
-                                </button>
-                                <button type="button" class="btn btn-outline-primary" id="btn-view-table" onclick="setViewMode('table')" title="Tampilan Tabel Kelola">
-                                    <i class="fas fa-table"></i> Tabel
-                                </button>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Left: Table/Grid Monitoring List -->
+    <div class="lg:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm">
+        <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center mb-5 gap-3">
+            <div class="flex items-center gap-3">
+                <h6 class="font-bold text-slate-800 dark:text-slate-100 text-sm flex items-center gap-2">
+                    <i class="fas fa-list text-blue-500"></i> Daftar Pemantauan
+                </h6>
+                
+                <!-- View Mode Button Group -->
+                <div class="inline-flex bg-slate-100 dark:bg-slate-950 p-1 rounded-xl border border-slate-200/50 dark:border-slate-800/80 gap-1 select-none">
+                    <button type="button" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg flex items-center gap-1.5 cursor-pointer transition-all duration-200 focus:outline-none" id="btn-view-grid" onclick="setViewMode('grid')" title="Tampilan Card Grid">
+                        <i class="fas fa-th-large"></i> Grid
+                    </button>
+                    <button type="button" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg flex items-center gap-1.5 cursor-pointer transition-all duration-200 focus:outline-none" id="btn-view-table" onclick="setViewMode('table')" title="Tampilan Tabel Kelola">
+                        <i class="fas fa-table"></i> Tabel
+                    </button>
+                </div>
+            </div>
+            
+            <input type="text" class="w-full sm:max-w-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl px-3.5 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-emerald-500 transition-all text-slate-800 dark:text-slate-100" id="search-bins"
+                   placeholder="Cari bin..." onkeyup="filterBins(this.value)">
+        </div>
+
+        <!-- 1. GRID VIEW -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4" id="bins-grid" style="display: none;">
+            @forelse($bins as $bin)
+            @php
+                $isConn = $bin->is_connected;
+                $perc = $isConn ? $bin->percentage : 0;
+                
+                if (!$isConn) {
+                    $c = '#64748b'; // slate-500
+                    $badgeStyle = 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border border-slate-500/20';
+                    $label = 'Offline';
+                } else {
+                    if ($perc > 85) {
+                        $c = '#f43f5e'; // rose-500
+                        $badgeStyle = 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20';
+                        $label = 'Full';
+                    } elseif ($perc < 25) {
+                        $c = '#10b981'; // emerald-500
+                        $badgeStyle = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20';
+                        $label = 'Empty';
+                    } else {
+                        $c = '#f59e0b'; // amber-500
+                        $badgeStyle = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20';
+                        $label = 'Normal';
+                    }
+                }
+                $circumference = 276.46; // r=44
+                $dashoffset = $circumference - ($circumference * $perc) / 100;
+            @endphp
+            <div class="bin-grid-item" data-searchable="{{ strtolower($bin->name . ' ' . $bin->location) }}">
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-4 flex flex-col h-full shadow-sm hover:shadow-md transition-all duration-300">
+                    <div class="flex justify-between items-start mb-3 gap-2">
+                        <div class="min-w-0">
+                            <div class="font-bold text-slate-800 dark:text-slate-100 text-sm truncate" title="{{ $bin->name }}">{{ $bin->name }}</div>
+                            <div class="text-[10px] text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5 truncate">
+                                <i class="fas fa-map-marker-alt"></i> {{ $bin->location ?? '-' }}
                             </div>
                         </div>
-                        <input type="text" class="form-control form-control-sm" id="search-bins"
-                               style="max-width:220px" placeholder="Cari bin..." onkeyup="filterBins(this.value)">
+                        <span id="badge-grid-{{ $bin->id }}" class="px-2 py-0.5 text-[10px] font-bold rounded-full whitespace-nowrap {{ $badgeStyle }}">{{ $label }}</span>
                     </div>
 
-                    <!-- 1. GRID VIEW -->
-                    <div class="row g-3 mb-4" id="bins-grid" style="display: none;">
-                        @forelse($bins as $bin)
-                        @php
-                            $c     = $bin->percentage >= 90 ? '#dc2626' : ($bin->percentage >= 70 ? '#f59e0b' : '#16a34a');
-                            $badge = $bin->percentage >= 90 ? 'danger' : ($bin->percentage >= 70 ? 'warning' : 'success');
-                            $label = $bin->percentage >= 90 ? 'Kritis' : ($bin->percentage >= 70 ? 'Warning' : 'Normal');
-                            $circumference = 2 * 3.14159265 * 40; // r=40
-                            $dashoffset = $circumference - ($circumference * $bin->percentage) / 100;
-                        @endphp
-                        <div class="col-md-6 bin-grid-item" data-searchable="{{ strtolower($bin->name . ' ' . $bin->location) }}">
-                            <div class="card-custom p-3 h-100 d-flex flex-column" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: all 0.3s ease;">
-                                <div class="d-flex justify-content-between align-items-start mb-3">
-                                    <div>
-                                        <div class="fw-bold fs-6 text-truncate" style="max-width: 170px; color: var(--text);">{{ $bin->name }}</div>
-                                        <div style="font-size:12px;color:var(--text-muted)">
-                                            <i class="fas fa-map-marker-alt"></i> {{ $bin->location ?? '-' }}
-                                        </div>
-                                    </div>
-                                    <span id="badge-grid-{{ $bin->id }}" class="badge bg-{{ $badge }}">{{ $label }}</span>
-                                </div>
-
-                                <!-- Circular Progress Gauge (SVG) -->
-                                <div class="text-center mb-3">
-                                    <div class="position-relative d-inline-block">
-                                        <svg width="100" height="100">
-                                            <circle cx="50" cy="50" r="40" stroke="var(--border)" stroke-width="8" fill="transparent" />
-                                            <circle id="circle-grid-{{ $bin->id }}" cx="50" cy="50" r="40" stroke="{{ $c }}" stroke-width="8" fill="transparent"
-                                                    stroke-dasharray="{{ $circumference }}" stroke-dashoffset="{{ $dashoffset }}"
-                                                    stroke-linecap="round" style="transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.3s; transform: rotate(-90deg); transform-origin: 50px 50px;" />
-                                        </svg>
-                                        <div class="position-absolute top-50 start-50 translate-middle text-center">
-                                            <div id="perc-grid-{{ $bin->id }}" style="font-size: 20px; font-weight: 800; color: {{ $c }}">{{ $bin->percentage }}%</div>
-                                            <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Penuh</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Progress Bar -->
-                                <div class="progress mb-2" style="height:8px;border-radius:4px">
-                                    <div id="bar-grid-{{ $bin->id }}" class="progress-bar" style="width:{{ $bin->percentage }}%;background:{{ $c }};border-radius:4px;transition: width 0.8s, background-color 0.3s;"></div>
-                                </div>
-
-                                <!-- Info -->
-                                <div class="d-flex justify-content-between mb-2">
-                                    <small id="liter-grid-{{ $bin->id }}" style="color:var(--text-muted)">
-                                        {{ round($bin->percentage * $bin->max_depth_cm / 100) }}L terisi
-                                    </small>
-                                    <small style="color:var(--text-muted)">
-                                        {{ $bin->max_depth_cm }}L kapasitas
-                                    </small>
-                                </div>
-
-                                <div class="d-flex justify-content-between border-top pt-2 mt-auto" style="font-size: 11px; color:var(--text-muted)">
-                                    <span id="dist-grid-{{ $bin->id }}"><i class="fas fa-ruler-vertical"></i> Jarak: {{ $bin->distance_cm }} cm</span>
-                                    <span id="coords-grid-{{ $bin->id }}">
-                                        <i class="fas fa-satellite"></i> 
-                                        {{ $bin->latitude ? number_format($bin->latitude,6).','.number_format($bin->longitude,6) : 'Belum kalibrasi' }}
-                                    </span>
-                                </div>
-
-                                <!-- Action buttons -->
-                                <div class="mt-3 pt-2 border-top">
-                                    <button class="btn btn-sm btn-success w-100" onclick="markEmpty({{ $bin->id }})">
-                                        <i class="fas fa-check"></i> Tandai Diambil
-                                    </button>
-                                </div>
+                    <!-- Circular Progress Gauge (SVG) -->
+                    <div class="flex justify-center items-center my-3">
+                        <div class="relative">
+                            <svg width="100" height="100" class="transform -rotate-90">
+                                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="6" fill="transparent" class="text-slate-100 dark:text-slate-800" />
+                                <circle id="circle-grid-{{ $bin->id }}" cx="50" cy="50" r="40" stroke="{{ $c }}" stroke-width="6" fill="transparent"
+                                        stroke-dasharray="251.2" stroke-dashoffset="{{ 251.2 - (251.2 * $perc) / 100 }}"
+                                        stroke-linecap="round" class="transition-all duration-700" />
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                                <div id="perc-grid-{{ $bin->id }}" class="text-xl font-extrabold" style="color: {{ $c }}">{{ $isConn ? $bin->percentage . '%' : '-' }}</div>
+                                <div class="text-[8px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider">{{ $isConn ? 'Penuh' : 'Offline' }}</div>
                             </div>
                         </div>
-                        @empty
-                        <div class="col-12 text-center text-muted py-4">
-                            Belum ada data tong sampah
-                        </div>
-                        @endforelse
                     </div>
 
-                    <!-- 2. TABLE VIEW -->
-                    <div id="bins-table-wrapper" style="display: block;">
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle" id="bins-table">
-                                <thead>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>Lokasi</th>
-                                        <th>Volume</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse($bins as $bin)
-                                    @php $color = $bin->percentage >= 90 ? 'danger' : ($bin->percentage >= 70 ? 'warning' : 'success'); @endphp
-                                    <tr class="bin-table-row" data-searchable="{{ strtolower($bin->name . ' ' . $bin->location) }}">
-                                        <td><b>{{ $bin->name }}</b></td>
-                                        <td>{{ $bin->location ?? '-' }}</td>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="progress flex-grow-1" style="height:8px; min-width: 100px;">
-                                                    <div id="bar-table-{{ $bin->id }}" class="progress-bar bg-{{ $color }}" style="width:{{ $bin->percentage }}%"></div>
-                                                </div>
-                                                <small id="perc-table-{{ $bin->id }}">{{ $bin->percentage }}%</small>
-                                            </div>
-                                        </td>
-                                        <td><span id="badge-table-{{ $bin->id }}" class="badge bg-{{ $color }}">
-                                            {{ $bin->percentage >= 90 ? 'Kritis' : ($bin->percentage >= 70 ? 'Warning' : 'Normal') }}
-                                        </span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-success" onclick="markEmpty({{ $bin->id }})">
-                                                <i class="fas fa-check"></i> Tandai Diambil
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    @empty
-                                    <tr><td colspan="5" class="text-center text-muted">Belum ada data</td></tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mb-2">
+                        <div id="bar-grid-{{ $bin->id }}" class="h-full rounded-full transition-all duration-700" style="width:{{ $perc }}%;background-color:{{ $c }}"></div>
+                    </div>
+
+                    <!-- Info -->
+                    <div class="flex justify-between items-center text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-2">
+                        <span id="liter-grid-{{ $bin->id }}">
+                            {{ $isConn ? round($bin->percentage * $bin->max_depth_cm / 100) . ' cm terisi' : '- cm terisi' }}
+                        </span>
+                        <span>
+                            Cap: {{ $bin->max_depth_cm }} cm
+                        </span>
+                    </div>
+
+                    <!-- Tinggi Sampah & Sisa Ruang -->
+                    <div class="grid grid-cols-2 gap-2 text-[10px] border-t border-slate-100 dark:border-slate-800/60 py-2.5 my-1">
+                        <div class="text-slate-500 dark:text-slate-400 font-medium">Tinggi Sampah: <b id="tinggi-grid-{{ $bin->id }}" class="text-blue-500 dark:text-emerald-450 block font-semibold text-xs mt-0.5">{{ $isConn && $bin->tinggi_sampah !== null ? $bin->tinggi_sampah . ' cm' : '-' }}</b></div>
+                        <div class="text-slate-500 dark:text-slate-400 font-medium">Sisa Ruang: <b id="sisa-grid-{{ $bin->id }}" class="text-emerald-600 dark:text-emerald-450 block font-semibold text-xs mt-0.5">{{ $isConn && $bin->sisa_ruang !== null ? $bin->sisa_ruang . ' cm' : '-' }}</b></div>
+                    </div>
+
+                    <div class="flex justify-between items-center text-[9px] text-slate-450 dark:text-slate-500 border-t border-slate-100 dark:border-slate-800/60 pt-2.5">
+                        <span id="dist-grid-{{ $bin->id }}"><i class="fas fa-ruler-vertical"></i> Jarak: {{ $isConn ? $bin->distance_cm . ' cm' : '-' }}</span>
+                        <span id="coords-grid-{{ $bin->id }}" class="font-mono">
+                            <i class="fas fa-satellite"></i> 
+                            {{ $isConn && $bin->latitude ? number_format($bin->latitude,6).','.number_format($bin->longitude,6) : 'Menunggu IoT...' }}
+                        </span>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60">
+                        <button class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl shadow-md transition-all active:scale-95 cursor-pointer" onclick="markEmpty({{ $bin->id }})">
+                            <i class="fas fa-check"></i> Tandai Diambil
+                        </button>
                     </div>
                 </div>
             </div>
+            @empty
+            <div class="col-span-full text-center text-slate-400 dark:text-slate-500 py-12">
+                Belum ada data tong sampah
+            </div>
+            @endforelse
+        </div>
 
-            <!-- Right: Dynamic Radius Settings & Profile -->
-            <div class="col-lg-4">
-                <!-- Radius Notifikasi Card -->
-                <div class="card-custom p-4 mb-4" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;">
-                    <h6 class="fw-bold mb-3" style="color:var(--text)"><i class="fas fa-bell text-warning animate__animated animate__swing animate__infinite" style="display:inline-block;"></i> Radius Notifikasi</h6>
-                    <form id="radius-form" onsubmit="updateSettingsRadius(event)">
-                        @csrf
-                        <div class="mb-3">
-                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                <label class="form-label mb-0 fw-semibold" style="font-size:13px; color:var(--text)">Jangkauan Sensor</label>
-                                <span id="radius-val" class="fw-bold text-primary" style="font-size:14px">
-                                    {{ auth()->user()->notification_radius }}m
-                                </span>
-                            </div>
-                            <input type="range" name="notification_radius" class="form-range"
-                                   min="50" max="1000" step="50" 
-                                   value="{{ auth()->user()->notification_radius }}"
-                                   oninput="updateRadiusSlider(this.value)" id="radius-settings-slider">
-                            <small style="color:var(--text-muted); font-size:11px; display:block; margin-top:5px; line-height: 1.4;">
-                                Peringatan akan otomatis berbunyi dan muncul jika ada tong sampah penuh (≥90%) dalam radius jangkauan ini dari lokasi Anda.
-                            </small>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-sm w-100 py-2 fw-semibold" style="border-radius: 8px;">
-                            <i class="fas fa-save"></i> Simpan Konfigurasi
-                        </button>
-                    </form>
-                </div>
+        <!-- 2. TABLE VIEW -->
+        <div id="bins-table-wrapper" style="display: block;">
+            <div class="overflow-x-auto rounded-xl border border-slate-150 dark:border-slate-800">
+                <table class="w-full border-collapse text-left" id="bins-table">
+                    <thead>
+                        <tr class="bg-slate-50/50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                            <th class="px-6 py-4">Nama</th>
+                            <th class="px-6 py-4">Lokasi</th>
+                            <th class="px-6 py-4">Volume</th>
+                            <th class="px-6 py-4">Status</th>
+                            <th class="px-6 py-4 text-right">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-150 dark:divide-slate-800/60">
+                        @forelse($bins as $bin)
+                        @php
+                            $isConn = $bin->is_connected;
+                            $perc = $isConn ? $bin->percentage : 0;
+                            if (!$isConn) {
+                                $badgeStyle = 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border border-slate-500/20';
+                                $labelTable = 'Offline';
+                            } else {
+                                if ($perc > 85) {
+                                    $badgeStyle = 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20';
+                                    $labelTable = 'Full';
+                                } elseif ($perc < 25) {
+                                    $badgeStyle = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20';
+                                    $labelTable = 'Empty';
+                                } else {
+                                    $badgeStyle = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20';
+                                    $labelTable = 'Normal';
+                                }
+                            }
+                        @endphp
+                        <tr class="bin-table-row hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-all" data-searchable="{{ strtolower($bin->name . ' ' . $bin->location) }}">
+                            <td class="px-6 py-4 text-sm font-bold text-slate-800 dark:text-slate-100">{{ $bin->name }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-550 dark:text-slate-400">{{ $bin->location ?? '-' }}</td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-24 bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div id="bar-table-{{ $bin->id }}" class="h-full rounded-full transition-all duration-700" style="width:{{ $perc }}%; background-color: {{ !$isConn ? '#64748b' : ($perc > 85 ? '#f43f5e' : ($perc < 25 ? '#10b981' : '#f59e0b')) }}"></div>
+                                    </div>
+                                    <small id="perc-table-{{ $bin->id }}" class="text-xs font-bold text-slate-755 dark:text-slate-300">{{ $isConn ? $bin->percentage . '%' : '-' }}</small>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4"><span id="badge-table-{{ $bin->id }}" class="px-2.5 py-1 text-[10px] font-extrabold rounded-full whitespace-nowrap {{ $badgeStyle }}">
+                                {{ $labelTable }}
+                            </span></td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl shadow-md transition-all active:scale-95 cursor-pointer" onclick="markEmpty({{ $bin->id }})">
+                                    <i class="fas fa-check"></i> Tandai Diambil
+                                </button>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="5" class="px-6 py-8 text-center text-slate-450 dark:text-slate-500">Belum ada data</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-                <!-- Profil Saya Card -->
-                <div class="card-custom p-4" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;">
-                    <h6 class="fw-bold mb-3" style="color:var(--text)"><i class="fas fa-user-circle text-primary"></i> Profil Saya</h6>
-                    <div class="d-flex align-items-center gap-3">
-                        <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg, #2563eb, #16a34a);color:white;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;box-shadow: 0 4px 12px rgba(37,99,235,0.2)">
-                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                        </div>
-                        <div style="min-width: 0; flex-grow: 1;">
-                            <div class="fw-bold text-truncate" style="font-size:14px; color:var(--text)">{{ auth()->user()->name }}</div>
-                            <div class="text-truncate" style="color:var(--text-muted);font-size:12px;margin-bottom:3px">{{ auth()->user()->email }}</div>
-                            <span class="badge bg-success-subtle text-success fw-bold" style="font-size:9.5px;padding:3.5px 8px;border-radius: 20px;">{{ ucfirst(auth()->user()->role) }}</span>
-                        </div>
+    <!-- Right: Dynamic Radius Settings & Profile -->
+    <div class="lg:col-span-1 space-y-6">
+        <!-- Radius Notifikasi Card -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm">
+            <h6 class="font-bold text-slate-850 dark:text-slate-100 text-sm mb-4 flex items-center gap-2">
+                <i class="fas fa-bell text-amber-500 animate-swing"></i> Radius Notifikasi
+            </h6>
+            <form id="radius-form" onsubmit="updateSettingsRadius(event)">
+                @csrf
+                <div class="mb-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="text-xs font-semibold text-slate-550 dark:text-slate-400">Jangkauan Notifikasi</label>
+                        <span id="radius-val" class="font-black text-sm text-blue-600 dark:text-emerald-400 bg-blue-50 dark:bg-emerald-950/40 px-2 py-0.5 border border-blue-100 dark:border-emerald-500/20 rounded-lg">
+                            {{ auth()->user()->notification_radius }}m
+                        </span>
                     </div>
+
+                    <input type="range" name="notification_radius" class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-600 dark:accent-emerald-500"
+                           min="50" max="1000" step="50" 
+                           value="{{ auth()->user()->notification_radius }}"
+                           oninput="updateRadiusSlider(this.value)" id="radius-settings-slider">
+                    
+                    <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-3.5 leading-relaxed">
+                        Peringatan alarm dan notifikasi visual akan otomatis muncul jika ada tong sampah penuh (&gt;85%) di sekitar koordinat lokasi Anda dalam radius ini.
+                    </p>
+                </div>
+                <button type="submit" class="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-bold bg-blue-600 dark:bg-emerald-600 hover:bg-blue-700 dark:hover:bg-emerald-700 text-white rounded-xl shadow-md transition-all active:scale-95 cursor-pointer">
+                    <i class="fas fa-save text-[10px]"></i> Simpan Konfigurasi
+                </button>
+            </form>
+        </div>
+
+        <!-- Profil Saya Card -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm">
+            <h6 class="font-bold text-slate-850 dark:text-slate-100 text-sm mb-4 flex items-center gap-2">
+                <i class="fas fa-user-circle text-blue-500"></i> Profil Saya
+            </h6>
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 text-white flex items-center justify-center text-lg font-black shadow-md shadow-blue-500/10">
+                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                </div>
+                <div class="min-w-0 flex-grow">
+                    <div class="font-bold text-slate-800 dark:text-slate-200 text-sm truncate">{{ auth()->user()->name }}</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">{{ auth()->user()->email }}</div>
+                    <span class="inline-block px-2 py-0.5 text-[9px] font-extrabold bg-emerald-500/10 text-emerald-650 dark:text-emerald-450 border border-emerald-500/20 rounded-md mt-1.5">{{ ucfirst(auth()->user()->role) }}</span>
                 </div>
             </div>
         </div>
@@ -232,51 +277,31 @@
 </div>
 
 <!-- Floating Real-Time Notifications Container -->
-<div id="realtime-notifications" style="position:fixed; top:85px; right:20px; z-index:9999; display:flex; flex-direction:column; gap:10px; max-width:350px; pointer-events:none;"></div>
+<div id="realtime-notifications" class="fixed top-[85px] right-5 z-[9999] flex flex-col gap-2.5 max-w-[350px] pointer-events-none"></div>
 
 <style>
 .realtime-notif-card {
-    background: rgba(220, 38, 38, 0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(220, 38, 38, 0.25);
-    border-left: 4px solid #dc2626;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(244, 63, 94, 0.2);
+    border-left: 4px solid #f43f5e;
+    border-radius: 16px;
     padding: 14px;
-    box-shadow: 0 10px 30px rgba(220, 38, 38, 0.08), 0 1px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
     width: 320px;
     pointer-events: auto;
     animation: slideInNotif 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transition: all 0.3s ease;
 }
-[data-theme="dark"] .realtime-notif-card {
-    background: rgba(26, 26, 46, 0.7);
-    border: 1px solid rgba(239, 68, 68, 0.35);
-    border-left: 4px solid #ef4444;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(239, 68, 68, 0.1);
+.dark .realtime-notif-card {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(244, 63, 94, 0.3);
+    border-left: 4px solid #f43f5e;
 }
 .realtime-notif-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(220, 38, 38, 0.12), 0 2px 10px rgba(0,0,0,0.2);
 }
-.notif-alert-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(220, 38, 38, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-.notif-alert-icon i {
-    font-size: 14px;
-}
-.btn-xs {
-    font-size: 10.5px;
-    padding: 3px 6px;
-}
-
 @keyframes slideInNotif {
     from { transform: translateX(120%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
@@ -311,7 +336,6 @@
             
             osc.type = 'sine';
             var now = ctx.currentTime;
-            // Elegant premium digital chime
             osc.frequency.setValueAtTime(523.25, now); // C5
             osc.frequency.setValueAtTime(659.25, now + 0.12); // E5
             osc.frequency.setValueAtTime(783.99, now + 0.24); // G5
@@ -342,8 +366,8 @@
                     icon: 'error',
                     confirmButtonColor: '#dc2626',
                     confirmButtonText: 'Tutup',
-                    background: document.documentElement.getAttribute('data-theme') === 'dark' ? '#1a1a2e' : '#ffffff',
-                    color: document.documentElement.getAttribute('data-theme') === 'dark' ? '#f8f9fa' : '#1a1a2e',
+                    background: document.documentElement.classList.contains('dark') ? '#0f172a' : '#ffffff',
+                    color: document.documentElement.classList.contains('dark') ? '#f8fafc' : '#1e293b',
                     borderRadius: '16px'
                 });
             } else {
@@ -410,8 +434,8 @@
                 showConfirmButton: false,
                 timer: 3000,
                 timerProgressBar: true,
-                background: document.documentElement.getAttribute('data-theme') === 'dark' ? '#1a1a2e' : '#ffffff',
-                color: document.documentElement.getAttribute('data-theme') === 'dark' ? '#f8f9fa' : '#1a1a2e'
+                background: document.documentElement.classList.contains('dark') ? '#0f172a' : '#ffffff',
+                color: document.documentElement.classList.contains('dark') ? '#f8fafc' : '#1e293b'
             });
             Toast.fire({
                 icon: 'success',
@@ -474,27 +498,25 @@
                 card.className = 'realtime-notif-card';
                 card.dataset.binId = bin.id;
                 card.innerHTML = `
-                    <div class="d-flex align-items-start gap-3">
-                        <div class="notif-alert-icon">
-                            <i class="fas fa-exclamation-triangle text-danger animate__animated animate__pulse animate__infinite"></i>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-rose-500/15 flex items-center justify-center shrink-0">
+                            <i class="fas fa-exclamation-triangle text-rose-600 animate-pulse text-sm"></i>
                         </div>
-                        <div class="flex-grow-1" style="min-width:0;">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <b class="notif-title" style="font-size:12px;font-weight:700;color:#dc2626">⚠️ TONG PENUH!</b>
-                                <span class="notif-percentage badge bg-danger" style="font-size:10px;font-weight:800">${bin.percentage}%</span>
+                        <div class="flex-grow min-w-0">
+                            <div class="flex justify-between items-center mb-1">
+                                <b class="text-xs font-bold text-rose-600 dark:text-rose-450 uppercase tracking-wider">TONG PENUH!</b>
+                                <span class="notif-percentage px-2 py-0.5 text-[10px] font-black bg-rose-500 text-white rounded-md">${bin.percentage}%</span>
                             </div>
-                            <div class="notif-bin-name fw-bold text-truncate" style="font-size:13px;color:var(--text)">${bin.name}</div>
-                            <div class="notif-meta" style="font-size:11px;color:var(--text-muted);margin-bottom:8px">
-                                <i class="fas fa-location-arrow"></i> Jarak: <span class="notif-distance fw-semibold" style="color:var(--text)">${distanceText}</span>
+                            <div class="font-bold text-slate-800 dark:text-slate-100 text-xs truncate mb-1">${bin.name}</div>
+                            <div class="text-[10px] text-slate-500 dark:text-slate-400 mb-2">
+                                <i class="fas fa-location-arrow"></i> Jarak: <span class="notif-distance font-semibold text-slate-700 dark:text-slate-200">${distanceText}</span>
                             </div>
-                            <div class="progress" style="height:4px;background:rgba(0,0,0,0.1);border-radius:2px;margin-bottom:10px">
-                                <div class="notif-meter-filled progress-bar bg-danger" style="width:${bin.percentage}%"></div>
+                            <div class="w-full bg-slate-100 dark:bg-slate-800 h-1 rounded-full overflow-hidden mb-3">
+                                <div class="notif-meter-filled h-full bg-rose-500 rounded-full" style="width:${bin.percentage}%"></div>
                             </div>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-success btn-xs w-100" onclick="markEmpty(${bin.id})" style="font-size:10px;padding:4.5px;border-radius:6px">
-                                    <i class="fas fa-check"></i> Tandai Sudah Diambil
-                                </button>
-                            </div>
+                            <button class="w-full inline-flex items-center justify-center gap-1 py-1.5 text-[10px] font-extrabold bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-all" onclick="markEmpty(${bin.id})">
+                                <i class="fas fa-check"></i> Tandai Sudah Diambil
+                            </button>
                         </div>
                     </div>
                 `;
@@ -510,10 +532,37 @@
             .filter(b => b.dist <= userRadius)
             .sort((a,b) => a.dist - b.dist);
 
-        // Tampilkan floating notifications yang super elegan di pojok kanan untuk tong kritis
-        var critical = nearby.filter(b => b.percentage >= 90);
+        var critical = nearby.filter(b => b.percentage > 85);
         updateRealtimeNotifications(critical);
     }
+
+    // Dynamic Tailwind class definitions for status mapping
+    var twColors = {
+        'secondary': {
+            bg: 'bg-slate-500/10',
+            text: 'text-slate-600 dark:text-slate-400',
+            border: 'border-slate-500/20',
+            hex: '#64748b'
+        },
+        'danger': {
+            bg: 'bg-rose-500/10',
+            text: 'text-rose-600 dark:text-rose-400',
+            border: 'border-rose-500/20',
+            hex: '#f43f5e'
+        },
+        'success': {
+            bg: 'bg-emerald-500/10',
+            text: 'text-emerald-600 dark:text-emerald-400',
+            border: 'border-emerald-500/20',
+            hex: '#10b981'
+        },
+        'warning': {
+            bg: 'bg-amber-500/10',
+            text: 'text-amber-600 dark:text-amber-400',
+            border: 'border-amber-500/20',
+            hex: '#f59e0b'
+        }
+    };
 
     // Dynamic list table rendering
     function updateDaftarTable(binsList) {
@@ -521,28 +570,32 @@
         if (!tbody) return;
 
         if (binsList.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted">Belum ada data</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-8 text-center text-slate-450 dark:text-slate-500">Belum ada data</td></tr>';
             return;
         }
 
         tbody.innerHTML = binsList.map(bin => {
-            var color = bin.percentage >= 90 ? 'danger' : (bin.percentage >= 70 ? 'warning' : 'success');
-            var status = bin.percentage >= 90 ? 'Kritis' : (bin.percentage >= 70 ? 'Warning' : 'Normal');
-            return `<tr class="bin-table-row" data-searchable="${bin.name.toLowerCase()} ${bin.location ? bin.location.toLowerCase() : ''}">
-                <td><b>${bin.name}</b></td>
-                <td>${bin.location ?? '-'}</td>
-                <td>
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="progress flex-grow-1" style="height:8px; min-width: 100px;">
-                            <div id="bar-table-${bin.id}" class="progress-bar bg-${color}" style="width:${bin.percentage}%"></div>
+            var isConn = bin.is_connected;
+            var perc = isConn ? bin.percentage : 0;
+            var key = !isConn ? 'secondary' : (perc > 85 ? 'danger' : (perc < 25 ? 'success' : 'warning'));
+            var style = twColors[key];
+            var label = !isConn ? 'Offline' : (perc > 85 ? 'Full' : (perc < 25 ? 'Empty' : 'Normal'));
+            
+            return `<tr class="bin-table-row hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-all" data-searchable="${bin.name.toLowerCase()} ${bin.location ? bin.location.toLowerCase() : ''}">
+                <td class="px-6 py-4 text-sm font-bold text-slate-800 dark:text-slate-100">${bin.name}</td>
+                <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">${bin.location ?? '-'}</td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-24 bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div id="bar-table-${bin.id}" class="h-full rounded-full transition-all duration-700" style="width:${perc}%; background-color: ${style.hex}"></div>
                         </div>
-                        <small id="perc-table-${bin.id}">${bin.percentage}%</small>
+                        <small id="perc-table-${bin.id}" class="text-xs font-bold text-slate-700 dark:text-slate-300">${isConn ? bin.percentage + '%' : '-'}</small>
                     </div>
                 </td>
-                <td><span id="badge-table-${bin.id}" class="badge bg-${color}">${status}</span></td>
-                <td>
-                    <button class="btn btn-sm btn-success" onclick="markEmpty(${bin.id})">
-                        <i class="fas fa-check"></i> Tandai Diambil
+                <td class="px-6 py-4"><span id="badge-table-${bin.id}" class="px-2.5 py-1 text-[10px] font-extrabold rounded-full whitespace-nowrap ${style.bg} ${style.text} ${style.border}">${label}</span></td>
+                <td class="px-6 py-4 text-right">
+                    <button class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl shadow-md transition-all active:scale-95 cursor-pointer" onclick="markEmpty(${bin.id})">
+                        <i class="fas fa-check text-[10px]"></i> Tandai Diambil
                     </button>
                 </td>
             </tr>`;
@@ -555,73 +608,82 @@
         if (!gridContainer) return;
 
         if (binsList.length === 0) {
-            gridContainer.innerHTML = '<div class="col-12 text-center text-muted py-4">Belum ada data tong sampah</div>';
+            gridContainer.innerHTML = '<div class="col-span-full text-center text-slate-400 dark:text-slate-500 py-12">Belum ada data tong sampah</div>';
             return;
         }
 
         gridContainer.innerHTML = binsList.map(bin => {
-            var color = bin.percentage >= 90 ? 'danger' : (bin.percentage >= 70 ? 'warning' : 'success');
-            var colorHex = bin.percentage >= 90 ? '#dc2626' : (bin.percentage >= 70 ? '#f59e0b' : '#16a34a');
-            var label = bin.percentage >= 90 ? 'Kritis' : (bin.percentage >= 70 ? 'Warning' : 'Normal');
-            var circumference = 2 * 3.14159265 * 40;
-            var dashoffset = circumference - (circumference * bin.percentage) / 100;
+            var isConn = bin.is_connected;
+            var perc = isConn ? bin.percentage : 0;
+            var key = !isConn ? 'secondary' : (perc > 85 ? 'danger' : (perc < 25 ? 'success' : 'warning'));
+            var style = twColors[key];
+            var label = !isConn ? 'Offline' : (perc > 85 ? 'Full' : (perc < 25 ? 'Empty' : 'Normal'));
+            
+            var circumference = 251.2;
+            var dashoffset = circumference - (circumference * perc) / 100;
             
             return `
-            <div class="col-md-6 bin-grid-item" data-searchable="${bin.name.toLowerCase()} ${bin.location ? bin.location.toLowerCase() : ''}">
-                <div class="card-custom p-3 h-100 d-flex flex-column" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: all 0.3s ease;">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <div>
-                            <div class="fw-bold fs-6 text-truncate" style="max-width: 170px; color: var(--text);">${bin.name}</div>
-                            <div style="font-size:12px;color:var(--text-muted)">
+            <div class="bin-grid-item" data-searchable="${bin.name.toLowerCase()} ${bin.location ? bin.location.toLowerCase() : ''}">
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-4 flex flex-col h-full shadow-sm hover:shadow-md transition-all duration-300">
+                    <div class="flex justify-between items-start mb-3 gap-2">
+                        <div class="min-w-0">
+                            <div class="font-bold text-slate-800 dark:text-slate-100 text-sm truncate" title="${bin.name}">${bin.name}</div>
+                            <div class="text-[10px] text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5 truncate">
                                 <i class="fas fa-map-marker-alt"></i> ${bin.location ?? '-'}
                             </div>
                         </div>
-                        <span id="badge-grid-${bin.id}" class="badge bg-${color}">${label}</span>
+                        <span id="badge-grid-${bin.id}" class="px-2.5 py-1 text-[10px] font-bold rounded-full whitespace-nowrap ${style.bg} ${style.text} ${style.border}">${label}</span>
                     </div>
 
                     <!-- Circular Progress Gauge (SVG) -->
-                    <div class="text-center mb-3">
-                        <div class="position-relative d-inline-block">
-                            <svg width="100" height="100">
-                                <circle cx="50" cy="50" r="40" stroke="var(--border)" stroke-width="8" fill="transparent" />
-                                <circle id="circle-grid-${bin.id}" cx="50" cy="50" r="40" stroke="${colorHex}" stroke-width="8" fill="transparent"
+                    <div class="flex justify-center items-center my-3">
+                        <div class="relative">
+                            <svg width="100" height="100" class="transform -rotate-90">
+                                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="6" fill="transparent" class="text-slate-105 dark:text-slate-800" />
+                                <circle id="circle-grid-${bin.id}" cx="50" cy="50" r="40" stroke="${style.hex}" stroke-width="6" fill="transparent"
                                         stroke-dasharray="${circumference}" stroke-dashoffset="${dashoffset}"
-                                        stroke-linecap="round" style="transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.3s; transform: rotate(-90deg); transform-origin: 50px 50px;" />
+                                        stroke-linecap="round" class="transition-all duration-700" />
                             </svg>
-                            <div class="position-absolute top-50 start-50 translate-middle text-center">
-                                <div id="perc-grid-${bin.id}" style="font-size: 20px; font-weight: 800; color: ${colorHex}">${bin.percentage}%</div>
-                                <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Penuh</div>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                                <div id="perc-grid-${bin.id}" class="text-xl font-extrabold" style="color: ${style.hex}">${isConn ? bin.percentage + '%' : '-'}</div>
+                                <div class="text-[8px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider">${isConn ? 'Penuh' : 'Offline'}</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Progress Bar -->
-                    <div class="progress mb-2" style="height:8px;border-radius:4px">
-                        <div id="bar-grid-${bin.id}" class="progress-bar" style="width:${bin.percentage}%;background:${colorHex};border-radius:4px;transition: width 0.8s, background-color 0.3s;"></div>
+                    <div class="w-full bg-slate-150 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden mb-2">
+                        <div id="bar-grid-${bin.id}" class="h-full rounded-full transition-all duration-700" style="width:${perc}%;background-color:${style.hex}"></div>
                     </div>
 
                     <!-- Info -->
-                    <div class="d-flex justify-content-between mb-2">
-                        <small id="liter-grid-${bin.id}" style="color:var(--text-muted)">
-                            ${Math.round(bin.percentage * bin.max_depth_cm / 100)}L terisi
-                        </small>
-                        <small style="color:var(--text-muted)">
-                            ${bin.max_depth_cm}L kapasitas
-                        </small>
+                    <div class="flex justify-between items-center text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-2">
+                        <span id="liter-grid-${bin.id}">
+                            ${isConn ? Math.round(bin.percentage * bin.max_depth_cm / 100) + ' cm terisi' : '- cm terisi'}
+                        </span>
+                        <span>
+                            Cap: ${bin.max_depth_cm} cm
+                        </span>
                     </div>
 
-                    <div class="d-flex justify-content-between border-top pt-2 mt-auto" style="font-size: 11px; color:var(--text-muted)">
-                        <span id="dist-grid-${bin.id}"><i class="fas fa-ruler-vertical"></i> Jarak: ${bin.distance_cm} cm</span>
-                        <span id="coords-grid-${bin.id}">
+                    <!-- Tinggi Sampah & Sisa Ruang -->
+                    <div class="grid grid-cols-2 gap-2 text-[10px] border-t border-slate-100 dark:border-slate-800/60 py-2.5 my-1">
+                        <div class="text-slate-500 dark:text-slate-400 font-medium">Tinggi Sampah: <b id="tinggi-grid-${bin.id}" class="text-blue-500 dark:text-emerald-455 block font-semibold text-xs mt-0.5">${isConn && bin.tinggi_sampah !== null && bin.tinggi_sampah !== undefined ? bin.tinggi_sampah + ' cm' : '-'}</b></div>
+                        <div class="text-slate-500 dark:text-slate-400 font-medium">Sisa Ruang: <b id="sisa-grid-${bin.id}" class="text-emerald-600 dark:text-emerald-455 block font-semibold text-xs mt-0.5">${isConn && bin.sisa_ruang !== null && bin.sisa_ruang !== undefined ? bin.sisa_ruang + ' cm' : '-'}</b></div>
+                    </div>
+
+                    <div class="flex justify-between items-center text-[9px] text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-800/60 pt-2.5">
+                        <span id="dist-grid-${bin.id}"><i class="fas fa-ruler-vertical"></i> Jarak: ${isConn ? bin.distance_cm + ' cm' : '-'}</span>
+                        <span id="coords-grid-${bin.id}" class="font-mono">
                             <i class="fas fa-satellite"></i> 
-                            ${bin.latitude ? Number(bin.latitude).toFixed(6) + ',' + Number(bin.longitude).toFixed(6) : 'Belum kalibrasi'}
+                            ${isConn && bin.latitude ? Number(bin.latitude).toFixed(6) + ',' + Number(bin.longitude).toFixed(6) : 'Menunggu data...'}
                         </span>
                     </div>
 
                     <!-- Action buttons -->
-                    <div class="mt-3 pt-2 border-top">
-                        <button class="btn btn-sm btn-success w-100" onclick="markEmpty(${bin.id})">
-                            <i class="fas fa-check"></i> Tandai Diambil
+                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60">
+                        <button class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl shadow-md transition-all active:scale-95 cursor-pointer" onclick="markEmpty(${bin.id})">
+                            <i class="fas fa-check text-[10px]"></i> Tandai Diambil
                         </button>
                     </div>
                 </div>
@@ -633,22 +695,30 @@
     // Toggle Grid / Table View Mode
     function setViewMode(mode) {
         localStorage.setItem('user_bin_view_mode', mode);
+        const gridBtn = document.getElementById('btn-view-grid');
+        const tableBtn = document.getElementById('btn-view-table');
+        
+        const activeClasses = ['bg-white', 'dark:bg-slate-800', 'text-slate-800', 'dark:text-white', 'shadow-sm'];
+        const inactiveClasses = ['text-slate-500', 'hover:text-slate-800', 'dark:hover:text-slate-300'];
+
         if (mode === 'grid') {
-            document.getElementById('bins-grid').style.display = 'flex';
+            document.getElementById('bins-grid').style.display = 'grid';
             document.getElementById('bins-table-wrapper').style.display = 'none';
             
-            document.getElementById('btn-view-grid').classList.add('btn-primary');
-            document.getElementById('btn-view-grid').classList.remove('btn-outline-primary');
-            document.getElementById('btn-view-table').classList.add('btn-outline-primary');
-            document.getElementById('btn-view-table').classList.remove('btn-primary');
+            gridBtn.classList.add(...activeClasses);
+            gridBtn.classList.remove(...inactiveClasses);
+            
+            tableBtn.classList.remove(...activeClasses);
+            tableBtn.classList.add(...inactiveClasses);
         } else {
             document.getElementById('bins-grid').style.display = 'none';
             document.getElementById('bins-table-wrapper').style.display = 'block';
             
-            document.getElementById('btn-view-grid').classList.remove('btn-primary');
-            document.getElementById('btn-view-grid').classList.add('btn-outline-primary');
-            document.getElementById('btn-view-table').classList.remove('btn-outline-primary');
-            document.getElementById('btn-view-table').classList.add('btn-primary');
+            tableBtn.classList.add(...activeClasses);
+            tableBtn.classList.remove(...inactiveClasses);
+            
+            gridBtn.classList.remove(...activeClasses);
+            gridBtn.classList.add(...inactiveClasses);
         }
     }
 
@@ -659,16 +729,16 @@
             text: 'Apakah Anda yakin ingin menandai tong sampah ini sudah dikosongkan/diambil petugas?',
             icon: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#16a34a',
-            cancelButtonColor: '#6c757d',
+            confirmButtonColor: '#10b981',
+            cancelButtonColor: '#6b7280',
             confirmButtonText: 'Ya, Tandai!',
             cancelButtonText: 'Batal',
-            background: document.documentElement.getAttribute('data-theme') === 'dark' ? '#1a1a2e' : '#ffffff',
-            color: document.documentElement.getAttribute('data-theme') === 'dark' ? '#f8f9fa' : '#1a1a2e',
+            background: document.documentElement.classList.contains('dark') ? '#0f172a' : '#ffffff',
+            color: document.documentElement.classList.contains('dark') ? '#f8fafc' : '#1e293b',
             borderRadius: '16px'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`/user/trash-bins/${binId}/mark-empty`, {
+                fetch(`/admin/trash-bins/${binId}/mark-empty`, { // Laravel routes is common under admin role actions but accessible
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -686,14 +756,13 @@
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
-                        background: document.documentElement.getAttribute('data-theme') === 'dark' ? '#1a1a2e' : '#ffffff',
-                        color: document.documentElement.getAttribute('data-theme') === 'dark' ? '#f8f9fa' : '#1a1a2e'
+                        background: document.documentElement.classList.contains('dark') ? '#0f172a' : '#ffffff',
+                        color: document.documentElement.classList.contains('dark') ? '#f8fafc' : '#1e293b'
                     });
                     Toast.fire({
                         icon: 'success',
                         title: d.message || 'Status tong sampah berhasil diubah.'
                     });
-                    // Refresh data smoothly via ajax
                     pollDashboardData();
                 })
                 .catch(() => {
@@ -702,8 +771,8 @@
                         text: 'Terjadi kesalahan saat mengubah status tong sampah.',
                         icon: 'error',
                         confirmButtonColor: '#dc2626',
-                        background: document.documentElement.getAttribute('data-theme') === 'dark' ? '#1a1a2e' : '#ffffff',
-                        color: document.documentElement.getAttribute('data-theme') === 'dark' ? '#f8f9fa' : '#1a1a2e',
+                        background: document.documentElement.getAttribute('data-theme') === 'dark' ? '#0f172a' : '#ffffff',
+                        color: document.documentElement.getAttribute('data-theme') === 'dark' ? '#f8fafc' : '#1e293b',
                         borderRadius: '16px'
                     });
                 });
@@ -732,10 +801,10 @@
         .then(res => {
             if (res.status === 'success') {
                 // Update stats counter values smoothly
-                const totalBinsVal = document.querySelector('.stat-card .value.text-primary');
+                const totalBinsVal = document.querySelector('.grid > div:nth-child(1) .text-3xl');
                 if (totalBinsVal) totalBinsVal.textContent = res.totalBins;
 
-                const critBinsVal = document.querySelector('.stat-card .value.text-danger');
+                const critBinsVal = document.querySelector('.grid > div:nth-child(2) .text-3xl');
                 if (critBinsVal) critBinsVal.textContent = res.criticalBins;
 
                 // Update List Tab table rows and grid cards

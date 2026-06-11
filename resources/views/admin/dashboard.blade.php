@@ -3,133 +3,140 @@
 @section('content')
 
 <!-- STAT CARDS -->
-<div class="row g-3 mb-4">
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div>
-                <div class="label">Total Bins</div>
-                <div id="stat-total-bins" class="value text-primary">{{ $totalBins }}</div>
-            </div>
-            <div class="stat-icon" style="background:#eff6ff">
-                <i class="fas fa-trash" style="color:#2563eb"></i>
-            </div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+        <div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Bins</div>
+            <div id="stat-total-bins" class="text-3xl font-extrabold text-blue-600 dark:text-blue-400 mt-1">{{ $totalBins }}</div>
+        </div>
+        <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950/45 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-inner">
+            <i class="fas fa-trash text-lg"></i>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div>
-                <div class="label">Critical Bins</div>
-                <div id="stat-critical-bins" class="value text-danger">{{ $criticalBins }}</div>
-            </div>
-            <div class="stat-icon" style="background:#fef2f2">
-                <i class="fas fa-exclamation-triangle" style="color:#dc2626"></i>
-            </div>
+    
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+        <div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Critical Bins</div>
+            <div id="stat-critical-bins" class="text-3xl font-extrabold text-rose-600 dark:text-rose-400 mt-1">{{ $criticalBins }}</div>
+        </div>
+        <div class="w-12 h-12 bg-rose-50 dark:bg-rose-950/45 rounded-xl flex items-center justify-center text-rose-600 dark:text-rose-400 shadow-inner">
+            <i class="fas fa-exclamation-triangle text-lg animate-pulse"></i>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div>
-                <div class="label">Average Fill</div>
-                <div id="stat-avg-fill" class="value text-success">{{ $avgFill }}%</div>
-            </div>
-            <div class="stat-icon" style="background:#f0fdf4">
-                <i class="fas fa-chart-line" style="color:#16a34a"></i>
-            </div>
+
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+        <div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Average Fill</div>
+            <div id="stat-avg-fill" class="text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-1">{{ $avgFill }}%</div>
+        </div>
+        <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950/45 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-inner">
+            <i class="fas fa-chart-line text-lg"></i>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div>
-                <div class="label">Active Tracking</div>
-                <div id="stat-active-bins" class="value" style="color:#7c3aed">{{ $activeBins }}</div>
-            </div>
-            <div class="stat-icon" style="background:#f5f3ff">
-                <i class="fas fa-map-marker-alt" style="color:#7c3aed"></i>
-            </div>
+
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 shadow-sm flex items-center justify-between transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+        <div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Active Tracking</div>
+            <div id="stat-active-bins" class="text-3xl font-extrabold text-purple-600 dark:text-purple-400 mt-1">{{ $activeBins }}</div>
+        </div>
+        <div class="w-12 h-12 bg-purple-50 dark:bg-purple-950/45 rounded-xl flex items-center justify-center text-purple-600 dark:text-purple-400 shadow-inner">
+            <i class="fas fa-map-marker-alt text-lg"></i>
         </div>
     </div>
 </div>
 
 <!-- TAB NAV -->
-<div class="card-custom">
-    <div class="tab-nav px-3 pt-2">
-        <button class="tab-btn active" data-tab="peta" onclick="switchTab('peta')">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/85 rounded-2xl shadow-sm overflow-hidden flex flex-col mb-6">
+    <div class="flex border-b border-slate-200 dark:border-slate-800/80 px-4 py-2 gap-2 overflow-x-auto bg-slate-50/50 dark:bg-slate-900/40">
+        <button class="tab-btn active border-b-2 border-transparent px-4 py-3 text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 focus:outline-none transition-all duration-200 flex items-center gap-2" data-tab="peta" onclick="switchTab('peta')">
             <i class="fas fa-map-marked-alt"></i> Peta Monitoring
         </button>
-        <button class="tab-btn" data-tab="daftar" onclick="switchTab('daftar')">
+        <button class="tab-btn border-b-2 border-transparent px-4 py-3 text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 focus:outline-none transition-all duration-200 flex items-center gap-2" data-tab="daftar" onclick="switchTab('daftar')">
             <i class="fas fa-trash-alt"></i> Monitor & Kelola
         </button>
-        <button class="tab-btn" data-tab="analitik" onclick="switchTab('analitik')">
-            <i class="fas fa-chart-line"></i> Analitik Tren
+        <button class="tab-btn border-b-2 border-transparent px-4 py-3 text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 focus:outline-none transition-all duration-200 flex items-center gap-2" data-tab="analitik" onclick="switchTab('analitik')">
+            <i class="fas fa-chart-bar"></i> Analitik Tren
         </button>
     </div>
 
     <!-- TAB PETA -->
     <div id="tab-peta" class="tab-content-area active">
-        <div class="row g-0">
+        <div class="grid grid-cols-1 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-slate-200 dark:divide-slate-800">
             <!-- Map Container -->
-            <div class="col-md-9 border-end" style="position:relative;height:550px">
-                <div id="map" style="height:100%;width:100%"></div>
+            <div class="lg:col-span-3 relative h-[550px]">
+                <div id="map" class="h-full w-full"></div>
                 
                 <!-- Real-time Coordinates Overlay -->
-                <div style="position:absolute;bottom:10px;left:10px;z-index:999;
-                    background:var(--card-bg);color:var(--text);
-                    border:1px solid var(--border);padding:5px 12px;border-radius:8px;
-                    font-family:monospace;font-size:12px;pointer-events:none;
-                    box-shadow:0 2px 8px rgba(0,0,0,0.1)">
-                    X: <b id="cursor-lng">-</b> &nbsp; Y: <b id="cursor-lat">-</b>
+                <div class="absolute bottom-4 left-4 z-[999] bg-white/90 dark:bg-slate-900/90 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-800 px-3 py-1.5 rounded-xl font-mono text-xs pointer-events-none shadow-lg backdrop-blur-md flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-ping"></span>
+                    <span>X: <b id="cursor-lng">-</b></span>
+                    <span class="text-slate-300 dark:text-slate-700">|</span>
+                    <span>Y: <b id="cursor-lat">-</b></span>
                 </div>
                 
                 <!-- Status Legend Overlay -->
-                <div style="position:absolute;bottom:10px;right:10px;z-index:999;
-                    background:var(--card-bg);border:1px solid var(--border);
-                    border-radius:10px;padding:12px;font-size:11px;box-shadow: 0 4px 12px rgba(0,0,0,0.1)">
-                    <div style="font-weight:700;margin-bottom:6px">Status Legend</div>
-                    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
-                        <div style="width:10px;height:10px;background:#16a34a;border-radius:50%"></div> Normal (&lt;70%)
+                <div class="absolute bottom-4 right-4 z-[999] bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800/80 rounded-xl p-3.5 text-xs shadow-lg backdrop-blur-md max-w-[170px] space-y-2">
+                    <div class="font-bold text-slate-950 dark:text-slate-50 flex items-center gap-1">
+                        <i class="fas fa-info-circle text-blue-500 dark:text-emerald-400"></i> Legenda Status
                     </div>
-                    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
-                        <div style="width:10px;height:10px;background:#f59e0b;border-radius:50%"></div> Warning (70-89%)
-                    </div>
-                    <div style="display:flex;align-items:center;gap:6px">
-                        <div style="width:10px;height:10px;background:#dc2626;border-radius:50%"></div> Kritis (&gt;=90%)
+                    <div class="space-y-1.5">
+                        <div class="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-medium">
+                            <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full"></span> Empty (&lt;25%)
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-medium">
+                            <span class="w-2.5 h-2.5 bg-amber-500 rounded-full"></span> Normal (25%-85%)
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-medium">
+                            <span class="w-2.5 h-2.5 bg-rose-500 rounded-full"></span> Full (&gt;85%)
+                        </div>
                     </div>
                 </div>
             </div>
             
             <!-- Locations Sidebar Panel -->
-            <div class="col-md-3 d-flex flex-column" style="height:550px; background:var(--card-bg)">
+            <div class="lg:col-span-1 flex flex-col h-[550px] bg-slate-50/30 dark:bg-slate-900/20">
                 <!-- Sidebar Header -->
-                <div class="p-3 border-bottom">
-                    <h6 class="fw-bold mb-2"><i class="fas fa-map-marker-alt text-danger"></i> Daftar Lokasi</h6>
-                    <div class="position-relative">
-                        <input type="text" class="form-control form-control-sm ps-4" id="search-locations"
+                <div class="p-4 border-b border-slate-200 dark:border-slate-800">
+                    <h6 class="font-bold text-sm text-slate-800 dark:text-slate-200 flex items-center gap-2 mb-3">
+                        <i class="fas fa-map-marker-alt text-rose-500"></i> Daftar Lokasi
+                    </h6>
+                    <div class="relative">
+                        <input type="text" class="w-full bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-850 rounded-xl ps-9 pe-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-emerald-500 transition-all text-slate-800 dark:text-slate-100" id="search-locations"
                                placeholder="Cari lokasi bin..." onkeyup="filterMapLocations(this.value)">
-                        <i class="fas fa-search position-absolute top-50 translate-middle-y ms-2 text-muted" style="font-size:11px"></i>
+                        <i class="fas fa-search absolute top-1/2 left-3 -translate-y-1/2 text-slate-400 dark:text-slate-500 text-xs"></i>
                     </div>
                 </div>
                 
                 <!-- Sidebar Scrollable List -->
-                <div class="p-2 flex-grow-1" id="map-loc-list" style="overflow-y:auto; max-height:460px">
+                <div class="p-3 flex-grow overflow-y-auto space-y-2" id="map-loc-list">
                     @foreach($bins as $bin)
                     @php
-                        $color = $bin->percentage >= 90 ? 'danger' : ($bin->percentage >= 70 ? 'warning' : 'success');
+                        $isConn = $bin->is_connected;
+                        $perc = $isConn ? $bin->percentage : 0;
+                        if (!$isConn) {
+                            $badgeStyle = 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border border-slate-500/20';
+                        } else {
+                            if ($perc > 85) {
+                                $badgeStyle = 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20';
+                            } elseif ($perc < 25) {
+                                $badgeStyle = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20';
+                            } else {
+                                $badgeStyle = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20';
+                            }
+                        }
                     @endphp
-                    <div class="map-loc-item d-flex align-items-center gap-2 p-2 rounded mb-2"
+                    <div class="map-loc-item flex items-center gap-3 p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-sm cursor-pointer transition-all duration-200 hover:border-blue-500/30 dark:hover:border-emerald-500/30 hover:shadow"
                          id="map-loc-item-{{ $bin->id }}"
                          data-searchable="{{ strtolower($bin->name . ' ' . $bin->location) }}"
-                         style="background:var(--bg);cursor:pointer;transition:all 0.2s;border: 1px solid var(--border)"
-                         onclick="flyToMap({{ $bin->latitude ?? 0 }}, {{ $bin->longitude ?? 0 }}, {{ $bin->id }})"
-                         onmouseover="this.style.opacity='0.85'"
-                         onmouseout="this.style.opacity='1'">
+                         onclick="flyToMap({{ $bin->latitude ?? 0 }}, {{ $bin->longitude ?? 0 }}, {{ $bin->id }})">
                         
-                        <span id="badge-maplist-{{ $bin->id }}" class="badge bg-{{ $color }} text-white" style="min-width:42px; font-weight:700">
+                        <span id="badge-maplist-{{ $bin->id }}" class="px-2 py-1 text-xs font-extrabold rounded-lg min-w-[42px] text-center {{ $badgeStyle }}">
                             {{ $bin->percentage }}%
                         </span>
                         
-                        <div class="text-truncate">
-                            <div class="fw-bold" style="font-size:12px; color:var(--text)">{{ $bin->name }}</div>
-                            <div class="text-truncate" style="font-size:11px;color:var(--text-muted)">
+                        <div class="text-truncate min-w-0">
+                            <div class="font-bold text-xs text-slate-800 dark:text-slate-200 truncate">{{ $bin->name }}</div>
+                            <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
                                 {{ $bin->location ?? '-' }}
                             </div>
                         </div>
@@ -141,109 +148,133 @@
     </div>
 
     <!-- TAB DAFTAR (Monitor & Kelola) -->
-    <div id="tab-daftar" class="tab-content-area p-3">
-        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <div id="tab-daftar" class="tab-content-area hidden p-5">
+        <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center mb-5 gap-3">
             <!-- Search & View Mode Toggle -->
-            <div class="d-flex gap-2 align-items-center flex-grow-1" style="max-width: 500px;">
-                <div class="position-relative flex-grow-1">
-                    <input type="text" class="form-control form-control-sm ps-4" id="search-bins"
+            <div class="flex gap-3 items-center flex-grow max-w-lg">
+                <div class="relative flex-grow">
+                    <input type="text" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-xl ps-9 pe-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-emerald-500 transition-all text-slate-800 dark:text-slate-100" id="search-bins"
                            placeholder="Cari tong sampah..." onkeyup="filterBins(this.value)">
-                    <i class="fas fa-search position-absolute top-50 translate-middle-y ms-2 text-muted" style="font-size:12px"></i>
+                    <i class="fas fa-search absolute top-1/2 left-3 -translate-y-1/2 text-slate-400 dark:text-slate-500 text-sm"></i>
                 </div>
                 
-                <div class="btn-group btn-group-sm" role="group">
-                    <button type="button" class="btn btn-outline-primary" id="btn-view-grid" onclick="setViewMode('grid')" title="Tampilan Card Grid">
+                <div class="inline-flex bg-slate-100 dark:bg-slate-950 p-1 rounded-xl border border-slate-200/50 dark:border-slate-800/80 gap-1 select-none">
+                    <button type="button" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg flex items-center gap-1.5 cursor-pointer transition-all duration-200 focus:outline-none" id="btn-view-grid" onclick="setViewMode('grid')" title="Tampilan Card Grid">
                         <i class="fas fa-th-large"></i> Grid
                     </button>
-                    <button type="button" class="btn btn-outline-primary" id="btn-view-table" onclick="setViewMode('table')" title="Tampilan Tabel Kelola">
+                    <button type="button" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg flex items-center gap-1.5 cursor-pointer transition-all duration-200 focus:outline-none" id="btn-view-table" onclick="setViewMode('table')" title="Tampilan Tabel Kelola">
                         <i class="fas fa-table"></i> Tabel
                     </button>
                 </div>
             </div>
             
-            <a href="{{ route('admin.trash-bins.create') }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('admin.trash-bins.create') }}" class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold bg-blue-600 dark:bg-emerald-600 hover:bg-blue-700 dark:hover:bg-emerald-700 text-white rounded-xl shadow-md shadow-blue-500/10 dark:shadow-emerald-500/10 transition-all active:scale-95 text-center justify-center">
                 <i class="fas fa-plus"></i> Tambah Bin
             </a>
         </div>
 
         <!-- 1. GRID VIEW (VOLUME CARDS) -->
-        <div class="row g-3" id="bins-grid" style="display: none;">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="bins-grid" style="display: none;">
             @forelse($bins as $bin)
             @php
-                $c     = $bin->percentage >= 90 ? '#dc2626' : ($bin->percentage >= 70 ? '#f59e0b' : '#16a34a');
-                $bg    = $bin->percentage >= 90 ? '#fef2f2' : ($bin->percentage >= 70 ? '#fffbeb' : '#f0fdf4');
-                $label = $bin->percentage >= 90 ? 'Kritis' : ($bin->percentage >= 70 ? 'Warning' : 'Normal');
-                $badge = $bin->percentage >= 90 ? 'danger' : ($bin->percentage >= 70 ? 'warning' : 'success');
+                $isConn = $bin->is_connected;
+                $perc = $isConn ? $bin->percentage : 0;
+                
+                if (!$isConn) {
+                    $c = '#64748b'; // slate-500
+                    $badgeStyle = 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border border-slate-500/20';
+                    $label = 'Offline';
+                } else {
+                    if ($perc > 85) {
+                        $c = '#f43f5e'; // rose-500
+                        $badgeStyle = 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20';
+                        $label = 'Full';
+                    } elseif ($perc < 25) {
+                        $c = '#10b981'; // emerald-500
+                        $badgeStyle = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20';
+                        $label = 'Empty';
+                    } else {
+                        $c = '#f59e0b'; // amber-500
+                        $badgeStyle = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20';
+                        $label = 'Normal';
+                    }
+                }
                 $circumference = 2 * 3.14159265 * 40; // r=40
-                $dashoffset = $circumference - ($circumference * $bin->percentage) / 100;
+                $dashoffset = $circumference - ($circumference * $perc) / 100;
             @endphp
-            <div class="col-md-4 bin-grid-item" data-searchable="{{ strtolower($bin->name . ' ' . $bin->location) }}">
-                <div class="card-custom p-3 h-100 d-flex flex-column" style="box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: all 0.3s ease;">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <div>
-                            <div class="fw-bold fs-5 text-truncate" style="max-width: 170px;">{{ $bin->name }}</div>
-                            <div style="font-size:12px;color:var(--text-muted)">
-                                <i class="fas fa-map-marker-alt"></i> {{ $bin->location ?? '-' }}
+            <div class="bin-grid-item" data-searchable="{{ strtolower($bin->name . ' ' . $bin->location) }}">
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-5 flex flex-col h-full shadow-sm hover:shadow-md transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4 gap-2">
+                        <div class="min-w-0">
+                            <div class="font-bold text-slate-800 dark:text-slate-100 text-lg truncate" title="{{ $bin->name }}">{{ $bin->name }}</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-0.5 truncate">
+                                <i class="fas fa-map-marker-alt text-slate-400 dark:text-slate-500"></i> {{ $bin->location ?? '-' }}
                             </div>
                         </div>
-                        <span id="badge-grid-{{ $bin->id }}" class="badge bg-{{ $badge }}">{{ $label }}</span>
+                        <span id="badge-grid-{{ $bin->id }}" class="px-2.5 py-1 text-xs font-bold rounded-full whitespace-nowrap {{ $badgeStyle }}">{{ $label }}</span>
                     </div>
 
                     <!-- Circular Progress Gauge (SVG) -->
-                    <div class="text-center mb-3">
-                        <div class="position-relative d-inline-block">
-                            <svg width="100" height="100">
-                                <circle cx="50" cy="50" r="40" stroke="var(--border)" stroke-width="8" fill="transparent" />
-                                <circle id="circle-grid-{{ $bin->id }}" cx="50" cy="50" r="40" stroke="{{ $c }}" stroke-width="8" fill="transparent"
-                                        stroke-dasharray="{{ $circumference }}" stroke-dashoffset="{{ $dashoffset }}"
-                                        stroke-linecap="round" style="transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.3s; transform: rotate(-90deg); transform-origin: 50px 50px;" />
+                    <div class="flex justify-center items-center my-4">
+                        <div class="relative">
+                            <svg width="110" height="110" class="transform -rotate-90">
+                                <circle cx="55" cy="55" r="44" stroke="currentColor" stroke-width="7" fill="transparent" class="text-slate-100 dark:text-slate-800" />
+                                <circle id="circle-grid-{{ $bin->id }}" cx="55" cy="55" r="44" stroke="{{ $c }}" stroke-width="7" fill="transparent"
+                                        stroke-dasharray="276.46" stroke-dashoffset="{{ 276.46 - (276.46 * $perc) / 100 }}"
+                                        stroke-linecap="round" class="transition-all duration-700" />
                             </svg>
-                            <div class="position-absolute top-50 start-50 translate-middle text-center">
-                                <div id="perc-grid-{{ $bin->id }}" style="font-size: 20px; font-weight: 800; color: {{ $c }}">{{ $bin->percentage }}%</div>
-                                <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Penuh</div>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                                <div id="perc-grid-{{ $bin->id }}" class="text-2xl font-extrabold text-slate-800 dark:text-slate-100" style="color: {{ $c }}">{{ $isConn ? $bin->percentage . '%' : '-' }}</div>
+                                <div class="text-[8px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider mt-0.5">{{ $isConn ? 'Penuh' : 'Offline' }}</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Progress Bar -->
-                    <div class="progress mb-2" style="height:8px;border-radius:4px">
-                        <div id="bar-grid-{{ $bin->id }}" class="progress-bar" style="width:{{ $bin->percentage }}%;background:{{ $c }};border-radius:4px;transition: width 0.8s, background-color 0.3s;"></div>
+                    <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden mb-2">
+                        <div id="bar-grid-{{ $bin->id }}" class="h-full rounded-full transition-all duration-700" style="width:{{ $perc }}%;background-color:{{ $c }}"></div>
                     </div>
 
                     <!-- Info -->
-                    <div class="d-flex justify-content-between mb-2">
-                        <small id="liter-grid-{{ $bin->id }}" style="color:var(--text-muted)">
-                            {{ round($bin->percentage * $bin->max_depth_cm / 100) }}L terisi
-                        </small>
-                        <small style="color:var(--text-muted)">
-                            {{ $bin->max_depth_cm }}L kapasitas
-                        </small>
+                    <div class="flex justify-between items-center text-xs text-slate-500 dark:text-slate-400 font-semibold mb-3">
+                        <span id="liter-grid-{{ $bin->id }}">
+                            {{ $isConn ? round($bin->percentage * $bin->max_depth_cm / 100) . ' cm terisi' : '- cm terisi' }}
+                        </span>
+                        <span>
+                            Cap: {{ $bin->max_depth_cm }} cm
+                        </span>
                     </div>
 
-                    <div class="d-flex justify-content-between border-top pt-2 mt-auto" style="font-size: 11px; color:var(--text-muted)">
-                        <span id="dist-grid-{{ $bin->id }}"><i class="fas fa-ruler-vertical"></i> Jarak: {{ $bin->distance_cm }} cm</span>
-                        <span id="coords-grid-{{ $bin->id }}">
+                    <!-- Tinggi Sampah & Sisa Ruang -->
+                    <div class="grid grid-cols-2 gap-2 text-xs border-t border-slate-100 dark:border-slate-800/60 py-3 my-1">
+                        <div class="text-slate-500 dark:text-slate-400 font-medium">Tinggi Sampah: <b id="tinggi-grid-{{ $bin->id }}" class="text-blue-500 dark:text-emerald-400 block font-semibold text-sm mt-0.5">{{ $isConn && $bin->tinggi_sampah !== null ? $bin->tinggi_sampah . ' cm' : '-' }}</b></div>
+                        <div class="text-slate-500 dark:text-slate-400 font-medium">Sisa Ruang: <b id="sisa-grid-{{ $bin->id }}" class="text-emerald-600 dark:text-emerald-400 block font-semibold text-sm mt-0.5">{{ $isConn && $bin->sisa_ruang !== null ? $bin->sisa_ruang . ' cm' : '-' }}</b></div>
+                    </div>
+
+                    <div class="flex justify-between items-center text-[10px] text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-800/60 pt-3">
+                        <span id="dist-grid-{{ $bin->id }}" class="font-medium"><i class="fas fa-ruler-vertical"></i> Jarak: {{ $isConn ? $bin->distance_cm . ' cm' : '-' }}</span>
+                        <span id="coords-grid-{{ $bin->id }}" class="font-mono">
                             <i class="fas fa-satellite"></i> 
-                            {{ $bin->latitude ? number_format($bin->latitude,6).','.number_format($bin->longitude,6) : 'Belum kalibrasi' }}
+                            {{ $isConn && $bin->latitude ? number_format($bin->latitude,6).','.number_format($bin->longitude,6) : 'Menunggu IoT...' }}
                         </span>
                     </div>
 
                     <!-- Urgent Alert Container -->
-                    <div id="status-container-{{ $bin->id }}" class="mt-2" style="display: {{ $bin->percentage >= 90 ? 'block' : 'none' }}">
-                        <div class="p-2 rounded text-center" style="background:#fef2f2;color:#dc2626;font-size:11px;font-weight:600">
+                    <div id="status-container-{{ $bin->id }}" class="mt-4" style="display: {{ $isConn && $bin->percentage > 85 ? 'block' : 'none' }}">
+                        <div class="p-2.5 rounded-xl text-center bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-semibold border border-rose-500/20 animate-pulse">
                             ⚠️ Segera kosongkan tong sampah ini!
                         </div>
                     </div>
 
                     <!-- Action buttons -->
-                    <div class="d-flex gap-2 mt-3 pt-2 border-top">
-                        <a href="{{ route('admin.trash-bins.edit', $bin->id) }}" class="btn btn-sm btn-outline-warning flex-grow-1" title="Edit Bin">
+                    <div class="grid grid-cols-2 gap-3 mt-5 pt-3 border-t border-slate-100 dark:border-slate-800/60">
+                        <a href="{{ route('admin.trash-bins.edit', $bin->id) }}" class="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-bold border border-amber-500/35 text-amber-600 dark:text-amber-400 hover:bg-amber-500/10 dark:hover:bg-amber-500/20 rounded-xl transition-all text-center" title="Edit Bin">
                             <i class="fas fa-edit"></i> Edit
                         </a>
-                        <form action="{{ route('admin.trash-bins.destroy', $bin->id) }}" method="POST" class="d-inline flex-grow-1"
+                        <form action="{{ route('admin.trash-bins.destroy', $bin->id) }}" method="POST" class="w-full"
                               onsubmit="return confirmAction(event, 'Hapus bin ini?')">
                             @csrf @method('DELETE')
-                            <button class="btn btn-sm btn-outline-danger w-100" title="Hapus Bin">
+                            <button class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-bold border border-red-500/35 text-red-600 dark:text-red-400 hover:bg-red-500/10 dark:hover:bg-red-500/20 rounded-xl transition-all cursor-pointer" title="Hapus Bin">
                                 <i class="fas fa-trash"></i> Hapus
                             </button>
                         </form>
@@ -251,89 +282,115 @@
                 </div>
             </div>
             @empty
-            <div class="col-12 text-center text-muted py-5">
-                <i class="fas fa-trash fa-3x mb-3 d-block"></i>
-                Belum ada data tong sampah
+            <div class="col-span-full text-center text-slate-400 dark:text-slate-500 py-16">
+                <i class="fas fa-trash fa-3x mb-4 opacity-40"></i>
+                <div class="text-sm font-medium">Belum ada data tong sampah</div>
             </div>
             @endforelse
         </div>
 
         <!-- 2. TABLE VIEW (INTERACTIVE CRUD TABLE) -->
         <div id="bins-table-wrapper" style="display: none;">
-            <table class="table table-hover align-middle" id="bins-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nama</th>
-                        <th>Lokasi</th>
-                        <th>Volume</th>
-                        <th>Jarak Sensor</th>
-                        <th>Status</th>
-                        <th>Koordinat</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($bins as $bin)
-                    @php
-                        $color = $bin->percentage >= 90 ? 'danger' : ($bin->percentage >= 70 ? 'warning' : 'success');
-                        $label = $bin->percentage >= 90 ? 'Kritis' : ($bin->percentage >= 70 ? 'Warning' : 'Normal');
-                    @endphp
-                    <tr class="bin-table-row">
-                        <td>{{ $bin->id }}</td>
-                        <td><b>{{ $bin->name }}</b></td>
-                        <td>{{ $bin->location ?? '-' }}</td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="progress flex-grow-1" style="height:8px; min-width: 100px;">
-                                    <div id="bar-table-{{ $bin->id }}" class="progress-bar bg-{{ $color }}" style="width:{{ $bin->percentage }}%"></div>
+            <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+                <table class="w-full border-collapse text-left" id="bins-table">
+                    <thead>
+                        <tr class="bg-slate-50/50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                            <th class="px-6 py-4">#</th>
+                            <th class="px-6 py-4">Nama</th>
+                            <th class="px-6 py-4">Lokasi</th>
+                            <th class="px-6 py-4">Volume</th>
+                            <th class="px-6 py-4">Jarak Sensor</th>
+                            <th class="px-6 py-4">Status</th>
+                            <th class="px-6 py-4">Koordinat</th>
+                            <th class="px-6 py-4">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-150 dark:divide-slate-800/60">
+                        @forelse($bins as $bin)
+                        @php
+                            $isConn = $bin->is_connected;
+                            $perc = $isConn ? $bin->percentage : 0;
+                            if (!$isConn) {
+                                $badgeStyle = 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border border-slate-500/20';
+                                $label = 'Offline';
+                            } else {
+                                if ($perc > 85) {
+                                    $badgeStyle = 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20';
+                                    $label = 'Full';
+                                } elseif ($perc < 25) {
+                                    $badgeStyle = 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20';
+                                    $label = 'Empty';
+                                } else {
+                                    $badgeStyle = 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20';
+                                    $label = 'Normal';
+                                }
+                            }
+                        @endphp
+                        <tr class="bin-table-row hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-all">
+                            <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400 font-mono">{{ $bin->id }}</td>
+                            <td class="px-6 py-4 text-sm font-bold text-slate-800 dark:text-slate-100">{{ $bin->name }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">{{ $bin->location ?? '-' }}</td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-24 bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div id="bar-table-{{ $bin->id }}" class="h-full rounded-full transition-all duration-700" style="width:{{ $perc }}%; background-color: {{ !$isConn ? '#64748b' : ($perc > 85 ? '#f43f5e' : ($perc < 25 ? '#10b981' : '#f59e0b')) }}"></div>
+                                    </div>
+                                    <small id="perc-table-{{ $bin->id }}" class="text-xs font-bold text-slate-700 dark:text-slate-300">{{ $isConn ? $bin->percentage . '%' : '-' }}</small>
                                 </div>
-                                <small id="perc-table-{{ $bin->id }}">{{ $bin->percentage }}%</small>
-                            </div>
-                        </td>
-                        <td id="dist-table-{{ $bin->id }}">{{ $bin->distance_cm ?? '-' }} cm</td>
-                        <td><span id="badge-table-{{ $bin->id }}" class="badge bg-{{ $color }}">{{ $label }}</span></td>
-                        <td>
-                            <small id="coords-table-{{ $bin->id }}" style="font-family:monospace;font-size:11px">
-                                {{ $bin->latitude ? number_format($bin->latitude,6).', '.number_format($bin->longitude,6) : '-' }}
-                            </small>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="{{ route('admin.trash-bins.edit', $bin->id) }}" class="btn btn-sm btn-outline-warning" title="Edit Bin">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form action="{{ route('admin.trash-bins.destroy', $bin->id) }}" method="POST" class="d-inline"
-                                      onsubmit="return confirmAction(event, 'Hapus bin ini?')">
-                                    @csrf @method('DELETE')
-                                    <button class="btn btn-sm btn-outline-danger" title="Hapus Bin">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr><td colspan="8" class="text-center text-muted py-4">Belum ada data tong sampah</td></tr>
-                    @endforelse
-                </tbody>
-            </table>
+                            </td>
+                            <td id="dist-table-{{ $bin->id }}" class="px-6 py-4 text-sm text-slate-700 dark:text-slate-300">{{ $isConn ? ($bin->distance_cm ?? '-') . ' cm' : '-' }}</td>
+                            <td class="px-6 py-4"><span id="badge-table-{{ $bin->id }}" class="px-2.5 py-1 text-xs font-bold rounded-full whitespace-nowrap {{ $badgeStyle }}">{{ $label }}</span></td>
+                            <td class="px-6 py-4">
+                                <small id="coords-table-{{ $bin->id }}" class="font-mono text-slate-500 dark:text-slate-400 text-xs">
+                                    {{ $isConn && $bin->latitude ? number_format($bin->latitude,6).', '.number_format($bin->longitude,6) : 'Menunggu data ...' }}
+                                </small>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <a href="{{ route('admin.trash-bins.edit', $bin->id) }}" class="inline-flex items-center justify-center w-8 h-8 text-amber-500 hover:bg-amber-500/10 rounded-lg border border-amber-500/20 transition-all" title="Edit Bin">
+                                        <i class="fas fa-edit text-xs"></i>
+                                    </a>
+                                    <form action="{{ route('admin.trash-bins.destroy', $bin->id) }}" method="POST" class="inline"
+                                          onsubmit="return confirmAction(event, 'Hapus bin ini?')">
+                                        @csrf @method('DELETE')
+                                        <button class="inline-flex items-center justify-center w-8 h-8 text-red-500 hover:bg-red-500/10 rounded-lg border border-red-500/20 cursor-pointer transition-all" title="Hapus Bin">
+                                            <i class="fas fa-trash text-xs"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="8" class="px-6 py-12 text-center text-slate-400 dark:text-slate-500">
+                                <i class="fas fa-trash fa-2x mb-3 opacity-40"></i>
+                                <div class="text-sm font-medium">Belum ada data tong sampah</div>
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
     <!-- TAB ANALITIK -->
-    <div id="tab-analitik" class="tab-content-area p-3">
-        <div class="row g-3">
-            <div class="col-md-8">
-                <div class="card-custom p-3">
-                    <h6 class="fw-bold mb-3">Tren Volume Mingguan</h6>
-                    <canvas id="weeklyChart" height="100"></canvas>
+    <div id="tab-analitik" class="tab-content-area hidden p-5">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-slate-50/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+                <h6 class="font-bold text-slate-800 dark:text-slate-100 text-sm mb-4 flex items-center gap-2">
+                    <i class="fas fa-chart-line text-blue-500"></i> Tren Volume Mingguan
+                </h6>
+                <div class="relative h-[280px] w-full">
+                    <canvas id="weeklyChart"></canvas>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card-custom p-3">
-                    <h6 class="fw-bold mb-3">Tren Volume Bulanan</h6>
-                    <canvas id="monthlyChart" height="200"></canvas>
+            <div class="lg:col-span-1 bg-slate-50/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+                <h6 class="font-bold text-slate-800 dark:text-slate-100 text-sm mb-4 flex items-center gap-2">
+                    <i class="fas fa-chart-bar text-purple-500"></i> Tren Volume Bulanan
+                </h6>
+                <div class="relative h-[280px] w-full">
+                    <canvas id="monthlyChart"></canvas>
                 </div>
             </div>
         </div>
@@ -344,12 +401,21 @@
 
 @push('scripts')
 <script>
-    var map = L.map('map', { attributionControl: false }).setView([-7.9797, 112.6304], 14);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    var map = new maplibregl.Map({
+        container: 'map',
+        attributionControl: false,
+        style: document.documentElement.classList.contains('dark')
+            ? 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json'
+            : 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
+        center: [113.704272, -8.166102],
+        zoom: 13,
+        pitch: 30
+    });
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
 
     map.on('mousemove', function(e) {
-        document.getElementById('cursor-lng').textContent = e.latlng.lng.toFixed(6);
-        document.getElementById('cursor-lat').textContent = e.latlng.lat.toFixed(6);
+        document.getElementById('cursor-lng').textContent = e.lngLat.lng.toFixed(6);
+        document.getElementById('cursor-lat').textContent = e.lngLat.lat.toFixed(6);
     });
     map.on('mouseout', function() {
         document.getElementById('cursor-lng').textContent = '-';
@@ -359,80 +425,184 @@
     var bins = @json($bins->values());
     var markers = {};
     var userMarker = null;
-    var directionLine = null;
+    var routingActive = false;
 
-    bins.forEach(function(b1, i) {
-        bins.forEach(function(b2, j) {
-            if (i < j && b1.latitude && b2.latitude) {
-                L.polyline([[b1.latitude, b1.longitude],[b2.latitude, b2.longitude]], {
-                    color: '#94a3b8', weight: 1, dashArray: '5,8', opacity: 0.4
-                }).addTo(map);
+    // Listen to theme changes from layouts/main
+    window.addEventListener('theme-changed', function(e) {
+        var mapStyle = e.detail.theme === 'dark' 
+            ? 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json'
+            : 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json';
+        map.setStyle(mapStyle);
+    });
+
+    function drawPolylines(binsList) {
+        var features = [];
+        binsList.forEach(function(b1, i) {
+            binsList.forEach(function(b2, j) {
+                if (i < j && b1.is_connected && b2.is_connected && b1.latitude && b2.latitude) {
+                    features.push({
+                        type: 'Feature',
+                        properties: {},
+                        geometry: {
+                            type: 'LineString',
+                            coordinates: [
+                                [b1.longitude, b1.latitude],
+                                [b2.longitude, b2.latitude]
+                            ]
+                        }
+                    });
+                }
+            });
+        });
+
+        var geojson = {
+            type: 'FeatureCollection',
+            features: features
+        };
+
+        var source = map.getSource('connections');
+        if (source) {
+            source.setData(geojson);
+        } else {
+            if (map.loaded()) {
+                addConnectionsLayer(geojson);
+            } else {
+                map.on('load', function() {
+                    addConnectionsLayer(geojson);
+                });
+            }
+        }
+    }
+
+    function addConnectionsLayer(geojson) {
+        if (map.getSource('connections')) return;
+        map.addSource('connections', {
+            type: 'geojson',
+            data: geojson
+        });
+        map.addLayer({
+            id: 'connections',
+            type: 'line',
+            source: 'connections',
+            paint: {
+                'line-color': '#94a3b8',
+                'line-width': 1,
+                'line-dasharray': [5, 8],
+                'line-opacity': 0.4
             }
         });
-    });
-
-    bins.forEach(function(bin) {
-        if (!bin.latitude || !bin.longitude) return;
-        var color = bin.percentage >= 90 ? '#dc2626' : (bin.percentage >= 70 ? '#f59e0b' : '#16a34a');
-        var label = bin.percentage >= 90 ? 'Kritis' : (bin.percentage >= 70 ? 'Warning' : 'Normal');
-        
-        var icon = L.divIcon({
-            className: '',
-            html: `<div style="position:relative">
-                <div style="width:44px;height:44px;border-radius:50%;border:3px solid ${color};background:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:${color};box-shadow:0 2px 8px rgba(0,0,0,0.2)">${bin.percentage}%</div>
-                ${bin.percentage >= 90 ? `<div style="position:absolute;top:-2px;right:-2px;width:12px;height:12px;background:#dc2626;border-radius:50%;border:2px solid white"></div>` : ''}
-            </div>`,
-            iconSize: [44, 44], iconAnchor: [22, 22],
-        });
-        
-        markers[bin.id] = L.marker([bin.latitude, bin.longitude], {icon})
-            .addTo(map)
-            .bindPopup(`
-                <div style="min-width:190px;font-family:sans-serif">
-                    <div style="font-weight:700;font-size:14px">${bin.name}</div>
-                    <div style="color:#6c757d;font-size:12px;margin-bottom:8px">${bin.location ?? '-'}</div>
-
-                    <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-                        <span style="font-size:12px">Volume</span>
-                        <b style="color:${color};font-size:13px">${bin.percentage}%</b>
-                    </div>
-                    <div style="height:6px;background:#e5e7eb;border-radius:3px;margin-bottom:8px">
-                        <div style="height:100%;width:${bin.percentage}%;background:${color};border-radius:3px"></div>
-                    </div>
-
-                    <div style="display:flex;justify-content:space-between;font-size:11px;color:#6c757d;margin-bottom:10px">
-                        <span>Jarak: <b>${bin.distance_cm ?? '-'} cm</b></span>
-                        <span style="color:${color};font-weight:600">${label}</span>
-                    </div>
-
-                    <div id="dir-${bin.id}" style="display:none;padding:8px;background:#f0f9ff;border-radius:6px;font-size:12px;margin-bottom:8px;color:#1a1a2e">
-                        <div style="display:flex;justify-content:space-between">
-                            <span>Arah:</span>
-                            <b id="compass-${bin.id}">-</b>
-                        </div>
-                        <div style="display:flex;justify-content:space-between">
-                            <span>Jarak:</span>
-                            <b id="dist-${bin.id}">-</b>
-                        </div>
-                    </div>
-
-                    <button onclick="getDirectionTo(${bin.latitude}, ${bin.longitude}, ${bin.id})"
-                        style="width:100%;padding:7px;background:#2563eb;color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;margin-bottom:4px">
-                        🧭 Cari Arah ke Sini
-                    </button>
-                    <button onclick="openGoogleMaps(${bin.latitude}, ${bin.longitude})"
-                        style="width:100%;padding:7px;background:#16a34a;color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600">
-                        🗺️ Google Maps
-                    </button>
-                </div>
-            `);
-    });
-
-    var validBins = bins.filter(b => b.latitude && b.longitude);
-    if (validBins.length > 0) {
-        var group = L.featureGroup(validBins.map(b => L.marker([b.latitude, b.longitude])));
-        map.fitBounds(group.getBounds().pad(0.3));
     }
+
+    function updateOrCreateMarker(bin) {
+        if (!bin.is_connected || !bin.latitude || !bin.longitude) {
+            if (markers[bin.id]) {
+                markers[bin.id].remove();
+                delete markers[bin.id];
+            }
+            return;
+        }
+
+        var percentage = bin.percentage;
+        var color = percentage > 85 ? '#f43f5e' : (percentage < 25 ? '#10b981' : '#f59e0b');
+        var label = percentage > 85 ? 'Full' : (percentage < 25 ? 'Empty' : 'Normal');
+
+        var popupContent = `
+            <div style="min-width:190px;font-family:'Outfit',sans-serif">
+                <div style="font-weight:700;font-size:14px;margin-bottom:2px" class="text-slate-900 dark:text-white">${bin.name}</div>
+                <div style="font-size:11px;margin-bottom:8px" class="text-slate-500 dark:text-slate-400"><i class="fas fa-map-marker-alt"></i> ${bin.location ?? '-'}</div>
+
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-weight:600">
+                    <span style="font-size:11px">Volume</span>
+                    <b style="color:${color};font-size:12px">${percentage}%</b>
+                </div>
+                <div style="height:6px;background:#e2e8f0;border-radius:3px;margin-bottom:8px;overflow:hidden" class="dark:bg-slate-800">
+                    <div style="height:100%;width:${percentage}%;background:${color};border-radius:3px"></div>
+                </div>
+
+                <div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:6px" class="text-slate-500 dark:text-slate-400">
+                    <span>Jarak: <b>${bin.distance_cm ?? '-'} cm</b></span>
+                    <span style="color:${color};font-weight:700">${label}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:10px" class="text-slate-500 dark:text-slate-400">
+                    <span>Tinggi: <b>${bin.tinggi_sampah ?? '-'} cm</b></span>
+                    <span>Sisa: <b>${bin.sisa_ruang ?? '-'} cm</b></span>
+                </div>
+
+                <div id="dir-${bin.id}" style="display:none;padding:8px;background:#f0f9ff;border-radius:6px;font-size:11px;margin-bottom:8px;color:#1e3a8a" class="dark:bg-blue-950/40 dark:text-blue-200">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:2px">
+                        <span>Arah:</span>
+                        <b id="compass-${bin.id}">-</b>
+                    </div>
+                    <div style="display:flex;justify-content:space-between">
+                        <span>Jarak:</span>
+                        <b id="dist-${bin.id}">-</b>
+                    </div>
+                </div>
+
+                <button onclick="getDirectionTo(${bin.latitude}, ${bin.longitude}, ${bin.id})"
+                    style="width:100%;padding:7px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;font-size:11px;font-weight:600;margin-bottom:4px">
+                    🧭 Cari Arah ke Sini
+                </button>
+                <button onclick="openGoogleMaps(${bin.latitude}, ${bin.longitude})"
+                    style="width:100%;padding:7px;background:#10b981;color:white;border:none;border-radius:8px;cursor:pointer;font-size:11px;font-weight:600">
+                    🗺️ Google Maps
+                </button>
+            </div>
+        `;
+
+        if (markers[bin.id]) {
+            var marker = markers[bin.id];
+            marker.setLngLat([bin.longitude, bin.latitude]);
+            marker.getPopup().setHTML(popupContent);
+            
+            var el = marker.getElement();
+            el.innerHTML = `
+                <div class="relative">
+                    <div class="w-11 h-11 rounded-full border-3 bg-white dark:bg-slate-900 flex items-center justify-center text-[10px] font-black shadow-lg transition-transform hover:scale-105 duration-200" style="border-color: ${color}; color: ${color}">${percentage}%</div>
+                    ${percentage > 85 ? `<div class="absolute -top-0.5 -right-0.5 w-3 h-3 bg-rose-500 rounded-full border-2 border-white dark:border-slate-900 animate-ping"></div>` : ''}
+                </div>
+            `;
+        } else {
+            var el = document.createElement('div');
+            el.className = 'custom-trash-marker cursor-pointer group';
+            el.innerHTML = `
+                <div class="relative">
+                    <div class="w-11 h-11 rounded-full border-3 bg-white dark:bg-slate-900 flex items-center justify-center text-[10px] font-black shadow-lg transition-transform hover:scale-105 duration-200" style="border-color: ${color}; color: ${color}">${percentage}%</div>
+                    ${percentage > 85 ? `<div class="absolute -top-0.5 -right-0.5 w-3 h-3 bg-rose-500 rounded-full border-2 border-white dark:border-slate-900 animate-ping"></div>` : ''}
+                </div>
+            `;
+
+            el.addEventListener('click', function() {
+                map.easeTo({
+                    center: [bin.longitude, bin.latitude],
+                    zoom: 15,
+                    duration: 1000
+                });
+            });
+
+            var popup = new maplibregl.Popup({ offset: 25 })
+                .setHTML(popupContent);
+
+            markers[bin.id] = new maplibregl.Marker({ element: el })
+                .setLngLat([bin.longitude, bin.latitude])
+                .setPopup(popup)
+                .addTo(map);
+        }
+    }
+
+    map.on('load', function() {
+        drawPolylines(bins);
+        bins.forEach(updateOrCreateMarker);
+        
+        var validBins = bins.filter(b => b.is_connected && b.latitude && b.longitude);
+        if (validBins.length > 0) {
+            var bounds = new maplibregl.LngLatBounds();
+            validBins.forEach(function(b) {
+                bounds.extend([b.longitude, b.latitude]);
+            });
+            map.fitBounds(bounds, { padding: 50 });
+        }
+    });
 
     var weeklyCtx = document.getElementById('weeklyChart')?.getContext('2d');
     if (weeklyCtx) {
@@ -443,13 +613,14 @@
                 datasets: [{
                     label: 'Rata-rata Volume (%)',
                     data: @json($weeklyData),
-                    borderColor: '#2563eb',
-                    backgroundColor: 'rgba(37,99,235,0.1)',
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59,130,246,0.1)',
                     fill: true, tension: 0.4, pointRadius: 4,
                 }]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
                 scales: { y: { beginAtZero: true, max: 100 } }
             }
@@ -464,12 +635,13 @@
                 labels: @json($monthlyLabels),
                 datasets: [{
                     data: @json($monthlyData),
-                    backgroundColor: 'rgba(37,99,235,0.7)',
+                    backgroundColor: 'rgba(124,58,237,0.7)',
                     borderRadius: 5,
                 }]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
                 scales: { y: { beginAtZero: true, max: 100 } }
             }
@@ -494,26 +666,32 @@
     // Toggle View Mode (Grid / Table)
     function setViewMode(mode) {
         localStorage.setItem('admin_bin_view_mode', mode);
+        const gridBtn = document.getElementById('btn-view-grid');
+        const tableBtn = document.getElementById('btn-view-table');
+        
+        const activeClasses = ['bg-white', 'dark:bg-slate-800', 'text-slate-800', 'dark:text-white', 'shadow-sm'];
+        const inactiveClasses = ['text-slate-500', 'hover:text-slate-800', 'dark:hover:text-slate-300'];
+
         if (mode === 'grid') {
-            document.getElementById('bins-grid').style.display = 'flex';
+            document.getElementById('bins-grid').style.display = 'grid';
             document.getElementById('bins-table-wrapper').style.display = 'none';
             
-            document.getElementById('btn-view-grid').classList.add('btn-primary');
-            document.getElementById('btn-view-grid').classList.remove('btn-outline-primary');
-            document.getElementById('btn-view-table').classList.add('btn-outline-primary');
-            document.getElementById('btn-view-table').classList.remove('btn-primary');
+            gridBtn.classList.add(...activeClasses);
+            gridBtn.classList.remove(...inactiveClasses);
+            
+            tableBtn.classList.remove(...activeClasses);
+            tableBtn.classList.add(...inactiveClasses);
         } else {
             document.getElementById('bins-grid').style.display = 'none';
             document.getElementById('bins-table-wrapper').style.display = 'block';
             
-            document.getElementById('btn-view-grid').classList.remove('btn-primary');
-            document.getElementById('btn-view-grid').classList.add('btn-outline-primary');
-            document.getElementById('btn-view-table').classList.remove('btn-outline-primary');
-            document.getElementById('btn-view-table').classList.add('btn-primary');
+            tableBtn.classList.add(...activeClasses);
+            tableBtn.classList.remove(...inactiveClasses);
+            
+            gridBtn.classList.remove(...activeClasses);
+            gridBtn.classList.add(...inactiveClasses);
         }
     }
-
-
 
     // Hitung jarak (Haversine formula)
     function getDistance(lat1, lng1, lat2, lng2) {
@@ -545,36 +723,93 @@
         return m >= 1000 ? (m/1000).toFixed(2)+' km' : Math.round(m)+' m';
     }
 
+    function clearRoute() {
+        if (map.getLayer('route')) map.removeLayer('route');
+        if (map.getSource('route')) map.removeSource('route');
+        routingActive = false;
+    }
+
     function getDirectionTo(binLat, binLng, binId) {
-        navigator.geolocation.getCurrentPosition(function(pos) {
+        navigator.geolocation.getCurrentPosition(async function(pos) {
             var myLat = pos.coords.latitude;
             var myLng = pos.coords.longitude;
 
-            if (userMarker) map.removeLayer(userMarker);
-            userMarker = L.marker([myLat, myLng], {
-                icon: L.divIcon({
-                    className: '',
-                    html: `<div style="width:16px;height:16px;background:#2563eb;border-radius:50%;border:3px solid white;box-shadow:0 0 0 6px rgba(37,99,235,0.25)"></div>`,
-                    iconSize: [16,16], iconAnchor: [8,8]
-                })
-            }).addTo(map).bindPopup('📍 Lokasi Saya').openPopup();
+            if (userMarker) userMarker.remove();
+            
+            var el = document.createElement('div');
+            el.innerHTML = `<div style="width:16px;height:16px;background:#2563eb;border-radius:50%;border:3px solid white;box-shadow:0 0 0 6px rgba(37,99,235,0.25)"></div>`;
+            
+            userMarker = new maplibregl.Marker({ element: el })
+                .setLngLat([myLng, myLat])
+                .addTo(map);
 
-            if (directionLine) map.removeLayer(directionLine);
-            directionLine = L.polyline([[myLat, myLng],[binLat, binLng]], {
-                color: '#2563eb', weight: 2, dashArray: '6,8', opacity: 0.8
-            }).addTo(map);
+            var start = `${myLng},${myLat}`;
+            var end = `${binLng},${binLat}`;
+            
+            try {
+                var response = await fetch(`https://router.project-osrm.org/route/v1/driving/${start};${end}?overview=full&geometries=geojson`);
+                var data = await response.json();
+                
+                if (data.code !== 'Ok') {
+                    showOSRMBackupLine(myLat, myLng, binLat, binLng, binId);
+                    return;
+                }
 
-            var bearing = getBearing(myLat, myLng, binLat, binLng);
-            var dist    = getDistance(myLat, myLng, binLat, binLng);
+                var route = data.routes[0];
+                var coordinates = route.geometry.coordinates;
+                var distanceKm = (route.distance / 1000).toFixed(1);
+                var durationMin = Math.round(route.duration / 60);
 
-            var dirEl = document.getElementById('dir-'+binId);
-            if (dirEl) {
-                dirEl.style.display = 'block';
-                document.getElementById('compass-'+binId).textContent = bearingToCompass(bearing);
-                document.getElementById('dist-'+binId).textContent = formatDist(dist);
+                var routeData = {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                        type: 'LineString',
+                        coordinates: coordinates
+                    }
+                };
+
+                clearRoute();
+
+                map.addSource('route', {
+                    type: 'geojson',
+                    data: routeData
+                });
+
+                map.addLayer({
+                    id: 'route',
+                    type: 'line',
+                    source: 'route',
+                    layout: {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                    },
+                    paint: {
+                        'line-color': '#0ea5e9',
+                        'line-width': 5,
+                        'line-opacity': 0.8
+                    }
+                });
+
+                routingActive = true;
+
+                var dirEl = document.getElementById('dir-' + binId);
+                if (dirEl) {
+                    dirEl.style.display = 'block';
+                    document.getElementById('compass-' + binId).textContent = durationMin + ' mnt';
+                    document.getElementById('dist-' + binId).textContent = distanceKm + ' km';
+                }
+
+                var bounds = coordinates.reduce(function(bounds, coord) {
+                    return bounds.extend(coord);
+                }, new maplibregl.LngLatBounds(coordinates[0], coordinates[0]));
+                
+                map.fitBounds(bounds, { padding: 50 });
+
+            } catch (e) {
+                console.error("OSRM failed, using backup line:", e);
+                showOSRMBackupLine(myLat, myLng, binLat, binLng, binId);
             }
-
-            map.fitBounds([[myLat, myLng],[binLat, binLng]], {padding: [50, 50]});
 
         }, function() {
             Swal.fire({
@@ -583,11 +818,53 @@
                 icon: 'error',
                 confirmButtonColor: '#dc2626',
                 confirmButtonText: 'Tutup',
-                background: document.documentElement.getAttribute('data-theme') === 'dark' ? '#1a1a2e' : '#ffffff',
-                color: document.documentElement.getAttribute('data-theme') === 'dark' ? '#f8f9fa' : '#1a1a2e',
+                background: document.documentElement.classList.contains('dark') ? '#0f172a' : '#ffffff',
+                color: document.documentElement.classList.contains('dark') ? '#f8fafc' : '#1e293b',
                 borderRadius: '16px'
             });
         });
+    }
+
+    function showOSRMBackupLine(myLat, myLng, binLat, binLng, binId) {
+        clearRoute();
+        var routeData = {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+                type: 'LineString',
+                coordinates: [
+                    [myLng, myLat],
+                    [binLng, binLat]
+                ]
+            }
+        };
+        map.addSource('route', {
+            type: 'geojson',
+            data: routeData
+        });
+        map.addLayer({
+            id: 'route',
+            type: 'line',
+            source: 'route',
+            paint: {
+                'line-color': '#f43f5e',
+                'line-width': 3,
+                'line-dasharray': [4, 4]
+            }
+        });
+
+        var bearing = getBearing(myLat, myLng, binLat, binLng);
+        var dist = getDistance(myLat, myLng, binLat, binLng);
+
+        var dirEl = document.getElementById('dir-' + binId);
+        if (dirEl) {
+            dirEl.style.display = 'block';
+            document.getElementById('compass-' + binId).textContent = bearingToCompass(bearing);
+            document.getElementById('dist-' + binId).textContent = formatDist(dist);
+        }
+
+        var bounds = new maplibregl.LngLatBounds([myLng, myLat], [binLng, binLat]);
+        map.fitBounds(bounds, { padding: 50 });
     }
 
     function openGoogleMaps(lat, lng) {
@@ -596,9 +873,13 @@
 
     function flyToMap(lat, lng, binId) {
         if (lat && lng) {
-            map.flyTo([lat, lng], 17);
+            map.flyTo({
+                center: [lng, lat],
+                zoom: 17,
+                duration: 1200
+            });
             if(markers[binId]) {
-                markers[binId].openPopup();
+                markers[binId].togglePopup();
             }
         }
     }
@@ -609,6 +890,38 @@
             item.style.display = item.dataset.searchable.includes(query) ? '' : 'none';
         });
     }
+
+    // Dynamic Tailwind class definitions for status mapping
+    var twColors = {
+        'secondary': {
+            bg: 'bg-slate-500/10',
+            text: 'text-slate-600 dark:text-slate-400',
+            border: 'border-slate-500/20',
+            barBg: 'bg-slate-400 dark:bg-slate-600',
+            hex: '#64748b'
+        },
+        'danger': {
+            bg: 'bg-rose-500/10',
+            text: 'text-rose-600 dark:text-rose-400',
+            border: 'border-rose-500/20',
+            barBg: 'bg-rose-500',
+            hex: '#f43f5e'
+        },
+        'success': {
+            bg: 'bg-emerald-500/10',
+            text: 'text-emerald-600 dark:text-emerald-400',
+            border: 'border-emerald-500/20',
+            barBg: 'bg-emerald-500',
+            hex: '#10b981'
+        },
+        'warning': {
+            bg: 'bg-amber-500/10',
+            text: 'text-amber-600 dark:text-amber-400',
+            border: 'border-amber-500/20',
+            barBg: 'bg-amber-500',
+            hex: '#f59e0b'
+        }
+    };
 
     // Real-Time Live Auto Refresh (Anti-Cache)
     function triggerAutoRefresh() {
@@ -628,11 +941,15 @@
         })
         .then(result => {
             if(result.status === 'success') {
+                // Update polylines dynamically
+                drawPolylines(result.data);
+
                 // 0. UPDATE STAT CARDS
                 let totalBinsCount = result.data.length;
-                let criticalBinsCount = result.data.filter(b => b.percentage >= 90).length;
+                let connectedBins = result.data.filter(b => b.is_connected);
+                let criticalBinsCount = connectedBins.filter(b => b.percentage > 85).length;
                 let activeBinsCount = result.data.filter(b => b.is_active).length;
-                let avgFillVal = Math.round(result.data.reduce((acc, b) => acc + Number(b.percentage), 0) / (totalBinsCount || 1));
+                let avgFillVal = Math.round(connectedBins.reduce((acc, b) => acc + Number(b.percentage), 0) / (connectedBins.length || 1));
 
                 let statTotal = document.getElementById('stat-total-bins');
                 let statCritical = document.getElementById('stat-critical-bins');
@@ -645,9 +962,11 @@
                 if(statAvg) statAvg.innerText = avgFillVal + '%';
 
                 result.data.forEach(bin => {
-                    let color = bin.percentage >= 90 ? 'danger' : (bin.percentage >= 70 ? 'warning' : 'success');
-                    let colorHex = bin.percentage >= 90 ? '#dc2626' : (bin.percentage >= 70 ? '#f59e0b' : '#16a34a');
-                    let label = bin.percentage >= 90 ? 'Kritis' : (bin.percentage >= 70 ? 'Warning' : 'Normal');
+                    let isConn = bin.is_connected;
+                    let perc = isConn ? bin.percentage : 0;
+                    let key = !isConn ? 'secondary' : (perc > 85 ? 'danger' : (perc < 25 ? 'success' : 'warning'));
+                    let style = twColors[key];
+                    let label = !isConn ? 'Offline' : (perc > 85 ? 'Full' : (perc < 25 ? 'Empty' : 'Normal'));
                     
                     // 1. UPDATE TABLE VIEW
                     let textPercTable = document.getElementById('perc-table-' + bin.id);
@@ -656,18 +975,18 @@
                     let badgeTable = document.getElementById('badge-table-' + bin.id);
                     let coordsTable = document.getElementById('coords-table-' + bin.id);
 
-                    if(textPercTable) textPercTable.innerText = bin.percentage + '%';
-                    if(textDistTable) textDistTable.innerText = bin.distance_cm + ' cm';
+                    if(textPercTable) textPercTable.innerText = isConn ? bin.percentage + '%' : '-';
+                    if(textDistTable) textDistTable.innerText = isConn ? bin.distance_cm + ' cm' : '-';
                     if(barTable) {
-                        barTable.style.width = bin.percentage + '%';
-                        barTable.className = 'progress-bar bg-' + color; 
+                        barTable.style.width = perc + '%';
+                        barTable.style.backgroundColor = style.hex;
                     }
                     if(badgeTable) {
                         badgeTable.innerText = label;
-                        badgeTable.className = 'badge bg-' + color; 
+                        badgeTable.className = `px-2.5 py-1 text-xs font-bold rounded-full whitespace-nowrap ${style.bg} ${style.text} ${style.border}`; 
                     }
                     if(coordsTable) {
-                        coordsTable.innerText = bin.latitude ? Number(bin.latitude).toFixed(6) + ', ' + Number(bin.longitude).toFixed(6) : '-';
+                        coordsTable.innerText = isConn && bin.latitude ? Number(bin.latitude).toFixed(6) + ', ' + Number(bin.longitude).toFixed(6) : 'Menunggu data ...';
                     }
 
                     // 2. UPDATE GRID VIEW
@@ -682,98 +1001,52 @@
                     let coordsGrid = document.getElementById('coords-grid-' + bin.id);
 
                     if(textPercGrid) {
-                        textPercGrid.innerText = bin.percentage + '%';
-                        textPercGrid.style.color = colorHex;
+                        textPercGrid.innerText = isConn ? bin.percentage + '%' : '-';
+                        textPercGrid.style.color = style.hex;
                     }
-                    if(textDistGrid) textDistGrid.innerHTML = '<i class="fas fa-ruler-vertical"></i> Jarak: ' + bin.distance_cm + ' cm';
+                    if(textDistGrid) textDistGrid.innerHTML = '<i class="fas fa-ruler-vertical"></i> Jarak: ' + (isConn ? bin.distance_cm + ' cm' : '-');
                     if(barGrid) {
-                        barGrid.style.width = bin.percentage + '%';
-                        barGrid.style.backgroundColor = colorHex;
+                        barGrid.style.width = perc + '%';
+                        barGrid.style.backgroundColor = style.hex;
                     }
                     if(badgeGrid) {
                         badgeGrid.innerText = label;
-                        badgeGrid.className = 'badge bg-' + color;
+                        badgeGrid.className = `px-2.5 py-1 text-xs font-bold rounded-full whitespace-nowrap ${style.bg} ${style.text} ${style.border}`;
                     }
                     if(circleGrid) {
-                        let circum = 2 * 3.14159265 * 40;
-                        circleGrid.style.strokeDashoffset = circum - (circum * bin.percentage) / 100;
-                        circleGrid.setAttribute('stroke', colorHex);
+                        let circum = 276.46;
+                        circleGrid.style.strokeDashoffset = circum - (circum * perc) / 100;
+                        circleGrid.setAttribute('stroke', style.hex);
                     }
                     if(statusContainer) {
-                        statusContainer.style.display = bin.percentage >= 90 ? 'block' : 'none';
+                        statusContainer.style.display = isConn && bin.percentage > 85 ? 'block' : 'none';
                     }
                     if(emptyBtn) {
-                        emptyBtn.style.display = bin.percentage >= 70 ? 'block' : 'none';
+                        emptyBtn.style.display = isConn && bin.percentage > 85 ? 'block' : 'none';
                     }
                     if(literGrid) {
-                        literGrid.innerText = Math.round(bin.percentage * bin.max_depth_cm / 100) + 'L terisi';
+                        literGrid.innerText = isConn ? Math.round(bin.percentage * bin.max_depth_cm / 100) + ' cm terisi' : '- cm terisi';
+                    }
+                    let tinggiGrid = document.getElementById('tinggi-grid-' + bin.id);
+                    let sisaGrid = document.getElementById('sisa-grid-' + bin.id);
+                    if(tinggiGrid) {
+                        tinggiGrid.innerHTML = isConn && bin.tinggi_sampah !== null && bin.tinggi_sampah !== undefined ? bin.tinggi_sampah + ' cm' : '-';
+                    }
+                    if(sisaGrid) {
+                        sisaGrid.innerHTML = isConn && bin.sisa_ruang !== null && bin.sisa_ruang !== undefined ? bin.sisa_ruang + ' cm' : '-';
                     }
                     if(coordsGrid) {
-                        coordsGrid.innerHTML = '<i class="fas fa-satellite"></i> ' + (bin.latitude ? Number(bin.latitude).toFixed(6) + ',' + Number(bin.longitude).toFixed(6) : 'Belum kalibrasi');
+                        coordsGrid.innerHTML = '<i class="fas fa-satellite"></i> ' + (isConn && bin.latitude ? Number(bin.latitude).toFixed(6) + ',' + Number(bin.longitude).toFixed(6) : 'Menunggu data ...');
                     }
 
                     // 3. UPDATE MAPMARKERS POPUP & ICON & POSITION
-                    if (markers[bin.id]) {
-                        // Update marker position dynamically if coordinates changed
-                        if (bin.latitude && bin.longitude) {
-                            markers[bin.id].setLatLng([bin.latitude, bin.longitude]);
-                        }
-
-                        let icon = L.divIcon({
-                            className: '',
-                            html: `<div style="position:relative">
-                                <div style="width:44px;height:44px;border-radius:50%;border:3px solid ${colorHex};background:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:${colorHex};box-shadow:0 2px 8px rgba(0,0,0,0.2)">${bin.percentage}%</div>
-                                ${bin.percentage >= 90 ? `<div style="position:absolute;top:-2px;right:-2px;width:12px;height:12px;background:#dc2626;border-radius:50%;border:2px solid white"></div>` : ''}
-                            </div>`,
-                            iconSize: [44, 44], iconAnchor: [22, 22],
-                        });
-                        markers[bin.id].setIcon(icon);
-                        markers[bin.id].setPopupContent(`
-                            <div style="min-width:190px;font-family:sans-serif">
-                                <div style="font-weight:700;font-size:14px">${bin.name}</div>
-                                <div style="color:#6c757d;font-size:12px;margin-bottom:8px">${bin.location ?? '-'}</div>
-
-                                <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-                                    <span style="font-size:12px">Volume</span>
-                                    <b style="color:${colorHex};font-size:13px">${bin.percentage}%</b>
-                                </div>
-                                <div style="height:6px;background:#e5e7eb;border-radius:3px;margin-bottom:8px">
-                                    <div style="height:100%;width:${bin.percentage}%;background:${colorHex};border-radius:3px"></div>
-                                </div>
-
-                                <div style="display:flex;justify-content:space-between;font-size:11px;color:#6c757d;margin-bottom:10px">
-                                    <span>Jarak: <b>${bin.distance_cm ?? '-'} cm</b></span>
-                                    <span style="color:${colorHex};font-weight:600">${label}</span>
-                                </div>
-
-                                <div id="dir-${bin.id}" style="display:none;padding:8px;background:#f0f9ff;border-radius:6px;font-size:12px;margin-bottom:8px;color:#1a1a2e">
-                                    <div style="display:flex;justify-content:space-between">
-                                        <span>Arah:</span>
-                                        <b id="compass-${bin.id}">-</b>
-                                    </div>
-                                    <div style="display:flex;justify-content:space-between">
-                                        <span>Jarak:</span>
-                                        <b id="dist-${bin.id}">-</b>
-                                    </div>
-                                </div>
-
-                                <button onclick="getDirectionTo(${bin.latitude}, ${bin.longitude}, ${bin.id})"
-                                    style="width:100%;padding:7px;background:#2563eb;color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;margin-bottom:4px">
-                                    🧭 Cari Arah ke Sini
-                                </button>
-                                <button onclick="openGoogleMaps(${bin.latitude}, ${bin.longitude})"
-                                    style="width:100%;padding:7px;background:#16a34a;color:white;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600">
-                                    🗺️ Google Maps
-                                </button>
-                            </div>
-                        `);
-                    }
+                    updateOrCreateMarker(bin);
 
                     // 4. UPDATE SIDEBAR MAP LIST
                     let badgeMapList = document.getElementById('badge-maplist-' + bin.id);
                     if(badgeMapList) {
                         badgeMapList.innerText = bin.percentage + '%';
-                        badgeMapList.className = 'badge bg-' + color + ' text-white';
+                        badgeMapList.className = `px-2 py-1 text-xs font-extrabold rounded-lg min-w-[42px] text-center ${style.bg} ${style.text} ${style.border}`;
                     }
 
                     let mapLocItem = document.getElementById('map-loc-item-' + bin.id);
